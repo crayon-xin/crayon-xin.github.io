@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[OverTheWire-Leviathan]]></title>
-    <url>%2F2018%2F05%2F24%2FOverTheWire-Leviathan%2F</url>
-    <content type="text"><![CDATA[OverTheWire-Leviathan描述：这个wargame不需要任何有关编程的知识 - 只是有点常见感觉和一些关于基本* nix命令的知识。我们不知道它会是这样很难做出一个不需要编程能力的有趣的战争游戏玩家们。希望我们为新的挑战做出了有趣的挑战。 Leviathan的水平被称为leviathan0，leviathan1，…等，可以通过端口2223 上的SSH通过leviathan.labs.overthewire.org访问。 Leviathan Level 0 → Level 112Username: leviathan0Password: leviathan0 提示：这些级别的数据可以在家庭目录中找到。您可以查看/ etc / leviathan_pass获取各种级别的密码。 过程： 12345678leviathan0@leviathan:~$ lsleviathan0@leviathan:~$ ls -a. .. .backup .bash_logout .bashrc .profileleviathan0@leviathan:~$ cd .backup/leviathan0@leviathan:~/.backup$ lsbookmarks.htmlleviathan0@leviathan:~/.backup$ grep leviathan1 bookmarks.html &lt;DT&gt;&lt;A HREF=&quot;http://leviathan.labs.overthewire.org/passwordus.html | This will be fixed later, the password for leviathan1 is rioGegei8m&quot; ADD_DATE=&quot;1155384634&quot; LAST_CHARSET=&quot;ISO-8859-1&quot; ID=&quot;rdf:#$2wIU71&quot;&gt;password to leviathan1&lt;/A&gt; the password for leviathan1 is rioGegei8m Leviathan Level 1 → Level 212Username: leviathan1Password: rioGegei8m]]></content>
+    <title><![CDATA[iptables命令详解]]></title>
+    <url>%2F2018%2F07%2F02%2Fiptables%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[iptables命令详解iptables是防火墙,已经集成在内核中(netfilter项目的一部分),所有的Linux发行版都能使用 iptables . 快捷高效同时也有很好的扩展性. 语法简短的语法: 1iptables (选项) (参数) 高级命格式: 12iptables [-t 表名] &#123;-A|-D|-I|-F|-L|-Z|-P&#125; 规则链名 [规则号] &#123;-i/o 网卡名&#125; -p 协议名 &#123;-s 源IP/源子网&#125; --sport 源端口 &#123;-d 目标IP|目标子网&#125; --dport 目标端口 -j 动作参数说明 选项： 12345678910111213141516-t&lt;表&gt;：指定要操纵的表；-A：向规则链中添加条目；-D：从规则链中删除条目；-i：向规则链中插入条目；-R：替换规则链中的条目；-L：显示规则链中已有的条目；-F：清楚规则链中已有的条目；-Z：清空规则链中的数据包计算器和字节计数器；-N：创建新的用户自定义规则链；-P：定义规则链中的默认目标；-h：显示帮助信息；-p：指定要匹配的数据包协议类型；-s：指定要匹配的数据包源ip地址；-j&lt;目标&gt;：指定要跳转的目标；-i&lt;网络接口&gt;：指定数据包进入本机的网络接口；-o&lt;网络接口&gt;：指定数据包要离开本机所使用的网络接口。 表名包括： 1234raw：高级功能，如：网址过滤。mangle：数据包修改（QOS），用于实现服务质量。net：地址转换，用于网关路由器。filter：包过滤，用于防火墙规则。 规则链名包括： 12345INPUT链：处理输入数据包。OUTPUT链：处理输出数据包。PORWARD链：处理转发数据包。PREROUTING链：用于目标地址转换（DNAT）。POSTOUTING链：用于源地址转换（SNAT）。 动作包括： 1234567accept：接收数据包。DROP：丢弃数据包。REDIRECT：重定向、映射、透明代理。SNAT：源地址转换。DNAT：目标地址转换。MASQUERADE：IP伪装（NAT），用于ADSL。LOG：日志记录。 在Centos中iptables服务命令：123456789101112131415-- 启动服务# /etc/init.d/iptables start # service iptables start-- 停止服务# /etc/init.d/iptables stop# service iptables stop-- 重启服务# /etc/init.d/iptables restart# service iptables restart-- 保存设置# /etc/init.d/iptables save# service iptables save 在Ubuntu中配置iptables查看系统是否安装防火墙可以看到: 123/# whereis iptablesiptables: /sbin/iptables /usr/share/iptables /usr/share/man/man8/iptables.8.gz #表示已经安装iptables 如果默认没有安装，请运行此命令安装防火墙 ： 1apt-get install iptables Debian / Ubuntu 上 iptables 是不会保存规则的。需要按如下步骤进行，让网卡关闭保存 iptables 规则，启动时加载 iptables 规则。 开始配置 iptables.rules 文件 (仅供参考): 1vim /etc/iptables.rules 12345678910111213141516171819202122# sample configuration for iptables service# you can edit this manually or use system-config-firewall# please do not ask us to add additional ports/services to this default configuration*filter:INPUT ACCEPT [0:0]:FORWARD ACCEPT [0:0]:OUTPUT ACCEPT [0:0]-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT-A INPUT -p icmp -j ACCEPT-A INPUT -i lo -j ACCEPT-A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT-A INPUT -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT-A INPUT -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT-A INPUT -p tcp -m state --state NEW -m tcp --dport 465 -j ACCEPT-A INPUT -p tcp -m state --state NEW -m tcp --dport 3389 -j ACCEPT-A INPUT -p tcp -m state --state NEW -m tcp --dport 3306 -j ACCEPT-A INPUT -p tcp -m state --state NEW -m tcp --dport 8080 -j ACCEPT-A INPUT -p icmp -m limit --limit 1/s --limit-burst 10 -j ACCEPT-A INPUT -p icmp -m limit --limit 100/sec --limit-burst 100 -j ACCEPT-A INPUT -j REJECT --reject-with icmp-host-prohibited-A FORWARD -j REJECT --reject-with icmp-host-prohibitedCOMMIT 使防火墙规则生效： 1iptables-restore &lt; /etc/iptables.rules 创建文件，添加以下内容，使防火墙开机启动 1vim /etc/network/if-pre-up.d/iptables 12#!/bin/bashiptables-restore &lt; /etc/iptables.rules 添加执行权限： 1chmod +x /etc/network/if-pre-up.d/iptables 查看规则是否生效： 1iptables -L -n 常用规则：123456789101112#开启80端口iptables -A INPUT -p tcp --dport 80 -j ACCEPT#屏蔽单个IP的命令iptables -I INPUT -s 123.45.6.7 -j DROP #封整个段即从123.0.0.1到123.255.255.254的命令iptables -I INPUT -s 123.0.0.0/8 -j DROP #允许所有本机向外的访问iptables -A OUTPUT -j ACCEPT #禁止其他未允许的规则访问iptables -A INPUT -j reject #只允许192.168.0.3的机器进行SSH连接iptables -A INPUT -s 192.168.0.3 -p tcp --dport 22 -j ACCEPT]]></content>
       <categories>
-        <category>CTF</category>
+        <category>Linux</category>
       </categories>
       <tags>
-        <tag>CTF</tag>
         <tag>Linux</tag>
       </tags>
   </entry>
@@ -59,8 +58,8 @@
         <category>CTF</category>
       </categories>
       <tags>
-        <tag>CTF</tag>
         <tag>Linux</tag>
+        <tag>CTF</tag>
       </tags>
   </entry>
   <entry>
@@ -84,8 +83,8 @@
         <category>CTF</category>
       </categories>
       <tags>
-        <tag>CTF</tag>
         <tag>Linux</tag>
+        <tag>CTF</tag>
       </tags>
   </entry>
   <entry>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Linux," />
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Crayon&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/CTF/index.html">
+<meta name="description" content="iptables命令详解iptables是防火墙,已经集成在内核中(netfilter项目的一部分),所有的Linux发行版都能使用 iptables . 快捷高效同时也有很好的扩展性.  语法简短的语法:  1iptables (选项) (参数) 高级命格式:  12iptables [-t 表名] &amp;#123;-A|-D|-I|-F|-L|-Z|-P&amp;#125; 规则链名 [规则号] &amp;#12">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iptables命令详解">
+<meta property="og:url" content="http://yoursite.com/2018/07/02/iptables命令详解/index.html">
 <meta property="og:site_name" content="Crayon&#39;s blog">
+<meta property="og:description" content="iptables命令详解iptables是防火墙,已经集成在内核中(netfilter项目的一部分),所有的Linux发行版都能使用 iptables . 快捷高效同时也有很好的扩展性.  语法简短的语法:  1iptables (选项) (参数) 高级命格式:  12iptables [-t 表名] &amp;#123;-A|-D|-I|-F|-L|-Z|-P&amp;#125; 规则链名 [规则号] &amp;#12">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-02T16:37:32.359Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Crayon&#39;s blog">
+<meta name="twitter:title" content="iptables命令详解">
+<meta name="twitter:description" content="iptables命令详解iptables是防火墙,已经集成在内核中(netfilter项目的一部分),所有的Linux发行版都能使用 iptables . 快捷高效同时也有很好的扩展性.  语法简短的语法:  1iptables (选项) (参数) 高级命格式:  12iptables [-t 表名] &amp;#123;-A|-D|-I|-F|-L|-Z|-P&amp;#125; 规则链名 [规则号] &amp;#12">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/CTF/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/07/02/iptables命令详解/"/>
 
 
 
 
 
-  <title>标签: CTF | Crayon's blog</title>
+  <title>iptables命令详解 | Crayon's blog</title>
   
 
 
@@ -150,7 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -278,250 +283,221 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>CTF<small>标签</small>
-        </h2>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/02/iptables命令详解/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Crayon-xin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crayon's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/05/21/urldecode二次编码绕过/" itemprop="url">
-              
-                <span itemprop="name">urldecode二次编码绕过</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">iptables命令详解</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-21T19:27:59+08:00"
-              content="2018-05-21" >
-          05-21
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-02T23:44:42+08:00">
+                2018-07-02
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/02/iptables命令详解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/02/iptables命令详解/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/07/02/iptables命令详解/" class="leancloud_visitors" data-flag-title="iptables命令详解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/21/strcmp字符串比较绕过/" itemprop="url">
-              
-                <span itemprop="name">strcmp字符串比较绕过</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-21T16:35:55+08:00"
-              content="2018-05-21" >
-          05-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/21/extract变量覆盖/" itemprop="url">
-              
-                <span itemprop="name">extract变量覆盖</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-21T15:13:12+08:00"
-              content="2018-05-21" >
-          05-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/17/OverTheWire-Natas/" itemprop="url">
-              
-                <span itemprop="name">OverTheWire-Natas</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-17T08:40:50+08:00"
-              content="2018-05-17" >
-          05-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/26/bugku-web-writeup/" itemprop="url">
-              
-                <span itemprop="name">bugku web writeup</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-26T13:07:20+08:00"
-              content="2018-04-26" >
-          04-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/23/OverTheWire-Bandit/" itemprop="url">
-              
-                <span itemprop="name">OverTheWire-Bandit</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-23T12:42:22+08:00"
-              content="2018-04-23" >
-          04-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/18/sha1和md5函数漏洞/" itemprop="url">
-              
-                <span itemprop="name">sha1和md5函数漏洞</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-18T19:18:06+08:00"
-              content="2018-04-18" >
-          04-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/15/php伪协议-php/" itemprop="url">
-              
-                <span itemprop="name">php伪协议-php://</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-15T13:12:11+08:00"
-              content="2018-04-15" >
-          04-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h2 id="iptables命令详解"><a href="#iptables命令详解" class="headerlink" title="iptables命令详解"></a>iptables命令详解</h2><p>iptables是防火墙,已经集成在内核中(netfilter项目的一部分),所有的Linux发行版都能使用 <code>iptables</code> . 快捷高效同时也有很好的扩展性. </p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>简短的语法: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables (选项) (参数)</span><br></pre></td></tr></table></figure>
+<p>高级命格式: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">iptables [-t 表名] &#123;-A|-D|-I|-F|-L|-Z|-P&#125; 规则链名 [规则号] &#123;-i/o 网卡名&#125; -p 协议名 &#123;-s 源IP/源子网&#125; --sport 源端口 &#123;-d 目标IP|目标子网&#125; --dport 目标端口 -j 动作</span><br><span class="line">参数说明</span><br></pre></td></tr></table></figure>
+<p>选项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">-t&lt;表&gt;：指定要操纵的表；</span><br><span class="line">-A：向规则链中添加条目；</span><br><span class="line">-D：从规则链中删除条目；</span><br><span class="line">-i：向规则链中插入条目；</span><br><span class="line">-R：替换规则链中的条目；</span><br><span class="line">-L：显示规则链中已有的条目；</span><br><span class="line">-F：清楚规则链中已有的条目；</span><br><span class="line">-Z：清空规则链中的数据包计算器和字节计数器；</span><br><span class="line">-N：创建新的用户自定义规则链；</span><br><span class="line">-P：定义规则链中的默认目标；</span><br><span class="line">-h：显示帮助信息；</span><br><span class="line">-p：指定要匹配的数据包协议类型；</span><br><span class="line">-s：指定要匹配的数据包源ip地址；</span><br><span class="line">-j&lt;目标&gt;：指定要跳转的目标；</span><br><span class="line">-i&lt;网络接口&gt;：指定数据包进入本机的网络接口；</span><br><span class="line">-o&lt;网络接口&gt;：指定数据包要离开本机所使用的网络接口。</span><br></pre></td></tr></table></figure>
+<p>表名包括： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">raw：高级功能，如：网址过滤。</span><br><span class="line">mangle：数据包修改（QOS），用于实现服务质量。</span><br><span class="line">net：地址转换，用于网关路由器。</span><br><span class="line">filter：包过滤，用于防火墙规则。</span><br></pre></td></tr></table></figure>
+<p>规则链名包括： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">INPUT链：处理输入数据包。</span><br><span class="line">OUTPUT链：处理输出数据包。</span><br><span class="line">PORWARD链：处理转发数据包。</span><br><span class="line">PREROUTING链：用于目标地址转换（DNAT）。</span><br><span class="line">POSTOUTING链：用于源地址转换（SNAT）。</span><br></pre></td></tr></table></figure>
+<p>动作包括： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">accept：接收数据包。</span><br><span class="line">DROP：丢弃数据包。</span><br><span class="line">REDIRECT：重定向、映射、透明代理。</span><br><span class="line">SNAT：源地址转换。</span><br><span class="line">DNAT：目标地址转换。</span><br><span class="line">MASQUERADE：IP伪装（NAT），用于ADSL。</span><br><span class="line">LOG：日志记录。</span><br></pre></td></tr></table></figure>
+<h2 id="在Centos中iptables服务命令："><a href="#在Centos中iptables服务命令：" class="headerlink" title="在Centos中iptables服务命令："></a>在Centos中iptables服务命令：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-- 启动服务</span><br><span class="line"># /etc/init.d/iptables start </span><br><span class="line"># service iptables start</span><br><span class="line"></span><br><span class="line">-- 停止服务</span><br><span class="line"># /etc/init.d/iptables stop</span><br><span class="line"># service iptables stop</span><br><span class="line"></span><br><span class="line">-- 重启服务</span><br><span class="line"># /etc/init.d/iptables restart</span><br><span class="line"># service iptables restart</span><br><span class="line"></span><br><span class="line">-- 保存设置</span><br><span class="line"># /etc/init.d/iptables save</span><br><span class="line"># service iptables save</span><br></pre></td></tr></table></figure>
+<h2 id="在Ubuntu中配置iptables"><a href="#在Ubuntu中配置iptables" class="headerlink" title="在Ubuntu中配置iptables"></a>在Ubuntu中配置iptables</h2><p>查看系统是否安装防火墙可以看到: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/# whereis iptables</span><br><span class="line">iptables: /sbin/iptables /usr/share/iptables /usr/share/man/man8/iptables.8.gz </span><br><span class="line">#表示已经安装iptables</span><br></pre></td></tr></table></figure>
+<p>如果默认没有安装，请运行此命令安装防火墙 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install iptables</span><br></pre></td></tr></table></figure>
+<p> Debian / Ubuntu 上 iptables 是不会保存规则的。需要按如下步骤进行，让网卡关闭保存 iptables 规则，启动时加载 iptables 规则。</p>
+<p>开始配置 iptables.rules 文件 (仅供参考):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/iptables.rules</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># sample configuration for iptables service</span><br><span class="line"># you can edit this manually or use system-config-firewall</span><br><span class="line"># please do not ask us to add additional ports/services to this default configuration</span><br><span class="line">*filter</span><br><span class="line">:INPUT ACCEPT [0:0]</span><br><span class="line">:FORWARD ACCEPT [0:0]</span><br><span class="line">:OUTPUT ACCEPT [0:0]</span><br><span class="line">-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT</span><br><span class="line">-A INPUT -p icmp -j ACCEPT</span><br><span class="line">-A INPUT -i lo -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 443 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 465 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 3389 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 3306 -j ACCEPT</span><br><span class="line">-A INPUT -p tcp -m state --state NEW -m tcp --dport 8080 -j ACCEPT</span><br><span class="line">-A INPUT -p icmp -m limit --limit 1/s --limit-burst 10 -j ACCEPT</span><br><span class="line">-A INPUT -p icmp -m limit --limit 100/sec --limit-burst 100 -j ACCEPT</span><br><span class="line">-A INPUT -j REJECT --reject-with icmp-host-prohibited</span><br><span class="line">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</span><br><span class="line">COMMIT</span><br></pre></td></tr></table></figure>
+<p>使防火墙规则生效：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables-restore &lt; /etc/iptables.rules</span><br></pre></td></tr></table></figure>
+<p>创建文件，添加以下内容，使防火墙开机启动 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/network/if-pre-up.d/iptables</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">iptables-restore &lt; /etc/iptables.rules</span><br></pre></td></tr></table></figure>
+<p>添加执行权限：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x /etc/network/if-pre-up.d/iptables</span><br></pre></td></tr></table></figure>
+<p>查看规则是否生效：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -L -n</span><br></pre></td></tr></table></figure>
+<h2 id="常用规则："><a href="#常用规则：" class="headerlink" title="常用规则："></a>常用规则：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#开启80端口</span><br><span class="line">iptables -A INPUT -p tcp --dport 80 -j ACCEPT</span><br><span class="line">#屏蔽单个IP的命令</span><br><span class="line">iptables -I INPUT -s 123.45.6.7 -j DROP    </span><br><span class="line">#封整个段即从123.0.0.1到123.255.255.254的命令</span><br><span class="line">iptables -I INPUT -s 123.0.0.0/8 -j DROP      </span><br><span class="line">#允许所有本机向外的访问</span><br><span class="line">iptables -A OUTPUT -j ACCEPT    </span><br><span class="line">#禁止其他未允许的规则访问</span><br><span class="line">iptables -A INPUT -j reject  </span><br><span class="line">#只允许192.168.0.3的机器进行SSH连接</span><br><span class="line">iptables -A INPUT -s 192.168.0.3 -p tcp --dport 22 -j ACCEPT</span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/21/urldecode二次编码绕过/" rel="next" title="urldecode二次编码绕过">
+                <i class="fa fa-chevron-left"></i> urldecode二次编码绕过
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -529,6 +505,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -747,6 +734,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -798,6 +789,30 @@
       </style>
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: decodeURI(window.location.pathname), 
+            owner: 'crayon-xin',
+            repo: 'BlogGitment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '97b6db1162e8c3028f0368dcf5652150df48edc9',
+            
+                client_id: '371248f9e8d7899c092c'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 
