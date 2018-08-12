@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="工具使用," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="初识NmapNmap是被专业人员广泛使用的一款功能全面的端口扫描工具。它由Fyodor编写并维护。由 于Nmap品质卓越，使用灵活，它已经是渗透测试人员必备的工具。 除了端口扫描外，Nmap还具备如下功能： 123456789主机探测：Nmap可査找目标网络中的在线主机。默认情况下，Nmap通过4种方式—— ICMP echo请求（ping）、向443端口发送TCP	SYN	包、向80端口发送TC">
+<meta name="keywords" content="工具使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nmap详细使用指南">
+<meta property="og:url" content="http://yoursite.com/2018/08/12/nmap超详细使用指南/index.html">
+<meta property="og:site_name" content="Crayon&#39;s blog">
+<meta property="og:description" content="初识NmapNmap是被专业人员广泛使用的一款功能全面的端口扫描工具。它由Fyodor编写并维护。由 于Nmap品质卓越，使用灵活，它已经是渗透测试人员必备的工具。 除了端口扫描外，Nmap还具备如下功能： 123456789主机探测：Nmap可査找目标网络中的在线主机。默认情况下，Nmap通过4种方式—— ICMP echo请求（ping）、向443端口发送TCP	SYN	包、向80端口发送TC">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-12T16:14:12.227Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nmap详细使用指南">
+<meta name="twitter:description" content="初识NmapNmap是被专业人员广泛使用的一款功能全面的端口扫描工具。它由Fyodor编写并维护。由 于Nmap品质卓越，使用灵活，它已经是渗透测试人员必备的工具。 除了端口扫描外，Nmap还具备如下功能： 123456789主机探测：Nmap可査找目标网络中的在线主机。默认情况下，Nmap通过4种方式—— ICMP echo请求（ping）、向443端口发送TCP	SYN	包、向80端口发送TC">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/12/nmap超详细使用指南/"/>
+
+
+
+
+
+  <title>nmap详细使用指南 | Crayon's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?253f54a0bb54d6f6605da5bad0e4f0fc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Crayon's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/12/nmap超详细使用指南/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Crayon-xin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Crayon's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">nmap详细使用指南</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-12T22:23:30+08:00">
+                2018-08-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工具使用/" itemprop="url" rel="index">
+                    <span itemprop="name">工具使用</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/12/nmap超详细使用指南/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/08/12/nmap超详细使用指南/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/12/nmap超详细使用指南/" class="leancloud_visitors" data-flag-title="nmap详细使用指南">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="初识Nmap"><a href="#初识Nmap" class="headerlink" title="初识Nmap"></a>初识Nmap</h2><p>Nmap是被专业人员广泛使用的一款功能全面的端口扫描工具。它由Fyodor编写并维护。由 于Nmap品质卓越，使用灵活，它已经是渗透测试人员必备的工具。</p>
+<p>除了端口扫描外，Nmap还具备如下功能：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">主机探测：Nmap可査找目标网络中的在线主机。默认情况下，Nmap通过4种方式—— ICMP echo请求（ping）、向443端口发送TCP	SYN	包、向80端口发送TCP ACK包和ICMP 时间戳请求——发现目标主机。</span><br><span class="line"></span><br><span class="line">服务/版本检测：在发现开放端口后，Nmap可进一步检查目标主机的检测服务协议、应用 程序名称、版本号等信息。</span><br><span class="line"></span><br><span class="line">操作系统检测：Nmap	向远程主机发送一系列数据包，并能够将远程主机的响应与操作系统 指纹数据库进行比较。如果发现了匹配结果，它就会显示匹配的操作系统。它确实可能无法 识别目标主机的操作系统；在这种情况下，如果您知道目标系统上使用的何种操作系统，可 在它提供的	URL	里提交有关信息，更新它的操作系统指纹数据库。 </span><br><span class="line"></span><br><span class="line">网络路由跟踪：它通过多种协议访问目标主机的不同端口，以尽可能访问目标主机。Nmap 路由跟踪功能从TTL的高值开始测试，逐步递减TTL，直到它到零为止。</span><br><span class="line"></span><br><span class="line">Nmap脚本引擎：这个功能扩充了Nmap的用途。如果您要使用Nmap实现它（在默认情况 下）没有的检测功能，可利用它的脚本引擎手写一个检测脚本。目前，Nmap可检査网络服务 的漏洞，还可以枚举目标系统的资源。</span><br></pre></td></tr></table></figure>
+<h2 id="安装Nmap"><a href="#安装Nmap" class="headerlink" title="安装Nmap"></a>安装Nmap</h2><p>nmap的安装很简单，Windows的话直接去官网下载安装包直接安装就行了-&gt;<a href="https://nmap.org/dist/nmap-7.70-setup.exe" target="_blank" rel="noopener">下载链接</a> </p>
+<p>kali已经自带了nmap，centos如果没有安装的话，<code>yum install nmap</code>就直接安装了</p>
+<h2 id="入门Nmap"><a href="#入门Nmap" class="headerlink" title="入门Nmap"></a>入门Nmap</h2><p>刚开始使用的时候可能会因为信息量太大无从下手，最简单的使用就是<code>nmap your-ip（域名）</code> 就可以扫描出其对外开放的服务。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# nmap 192.168.31.13</span><br><span class="line">Starting Nmap 7.70 ( https://nmap.org ) at 2018-08-12 23:02 CST</span><br><span class="line">Nmap scan report for 192.168.31.13</span><br><span class="line">Host is up (0.00038s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT      STATE SERVICE</span><br><span class="line">8080/tcp  open  http-proxy</span><br><span class="line">10010/tcp open  rxapi</span><br><span class="line">MAC Address: 00:0C:29:99:D3:E6 (VMware)</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 1.85 seconds</span><br></pre></td></tr></table></figure>
+<p>可以看出只开放了8080端口和10010端口</p>
+<p>nmap  -p 端口 IP(域名)，判断ip是否开放指定端口 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~<span class="comment"># nmap -p 8080 192.168.31.13</span></span><br><span class="line">Starting Nmap 7.70 ( https://nmap.org ) at 2018-08-12 23:05 CST</span><br><span class="line">Nmap scan report <span class="keyword">for</span> 192.168.31.13</span><br><span class="line">Host is up (0.00045s latency).</span><br><span class="line"></span><br><span class="line">PORT     STATE SERVICE</span><br><span class="line">8080/tcp open  http-proxy</span><br><span class="line">MAC Address: 00:0C:29:99:D3:E6 (VMware)</span><br><span class="line"></span><br><span class="line">Nmap <span class="keyword">done</span>: 1 IP address (1 host up) scanned <span class="keyword">in</span> 0.36 seconds</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# nmap -p 80 192.168.31.13</span><br><span class="line">Starting Nmap 7.70 ( https://nmap.org ) at 2018-08-12 23:05 CST</span><br><span class="line">Nmap scan report for 192.168.31.13</span><br><span class="line">Host is up (0.00049s latency).</span><br><span class="line"></span><br><span class="line">PORT   STATE  SERVICE</span><br><span class="line">80/tcp closed http</span><br><span class="line">MAC Address: 00:0C:29:99:D3:E6 (VMware)</span><br><span class="line"></span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 0.42 seconds</span><br></pre></td></tr></table></figure>
+<p>可以看出8080端口开放，80端口没有开放</p>
+<p>也可以增加端口和网段 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nmap  -p 22,21,80 192.168.31.13</span><br><span class="line"></span><br><span class="line">nmap  -p 22,21,80 192.168.31.1-253</span><br></pre></td></tr></table></figure>
+<p>nmap 192.168.31.1/24 扫描整个子网的端口 ，这个过程可能会比较久</p>
+<h2 id="进阶Nmap"><a href="#进阶Nmap" class="headerlink" title="进阶Nmap"></a>进阶Nmap</h2><p>在继续讲之前，先介绍一下Nmap可以识别出的6种端口状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">开放：工作于开放端口的服务器端的应用程序可以受理TCP	连接、接收UDP数据包或者响 应SCTP（流控制传输协议）请求。</span><br><span class="line"></span><br><span class="line">关闭：虽然我们确实可以访问有关的端口，但是没有应用程序工作于该端口上。</span><br><span class="line"></span><br><span class="line">过滤：Nmap	不能确定该端口是否开放。包过滤设备屏蔽了我们向目标发送的探测包。</span><br><span class="line"></span><br><span class="line">未过滤：虽然可以访问到指定端口，但Nmap不能确定该端口是否处于开放状态。 </span><br><span class="line"></span><br><span class="line">打开｜过滤：Nmap认为指定端口处于开放状态或过滤状态，但是不能确定处于两者之中的 哪种状态。在遇到没有响应的开放端口时，Nmap会作出这种判断。这可以是由于防火墙丢 弃数据包造成的。</span><br><span class="line"></span><br><span class="line">关闭｜过滤：Nmap	认为指定端口处于关闭状态或过滤状态，但是不能确定处于两者之中的 哪种状态。</span><br></pre></td></tr></table></figure>
+<h3 id="常用选项"><a href="#常用选项" class="headerlink" title="常用选项"></a>常用选项</h3><p>​    1.服务版本识别（-sV），Nmap可以在进行端口扫描的时候检测服务端软件的版本信息。版本信息将使后续的漏 洞识别工作更有针对性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# nmap -sV 192.168.31.13 -p 8080</span><br><span class="line">Starting Nmap 7.70 ( https://nmap.org ) at 2018-08-13 00:02 CST</span><br><span class="line">Nmap scan report for 192.168.31.13</span><br><span class="line">Host is up (0.00076s latency).</span><br><span class="line"></span><br><span class="line">PORT     STATE SERVICE VERSION</span><br><span class="line">8080/tcp open  http    Apache Tomcat 8.5.14</span><br><span class="line">MAC Address: 00:0C:29:99:D3:E6 (VMware)</span><br><span class="line"></span><br><span class="line">Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 12.75 seconds</span><br></pre></td></tr></table></figure>
+<p>​    2.操作系统检测（-O），Nmap还能识别目标主机的操作系统。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">root@kali:~# nmap -O 192.168.31.13 </span><br><span class="line">Starting Nmap 7.70 ( https://nmap.org ) at 2018-08-13 00:03 CST</span><br><span class="line">Nmap scan report for 192.168.31.13</span><br><span class="line">Host is up (0.00072s latency).</span><br><span class="line">Not shown: 998 closed ports</span><br><span class="line">PORT      STATE SERVICE</span><br><span class="line">8080/tcp  open  http-proxy</span><br><span class="line">10010/tcp open  rxapi</span><br><span class="line">MAC Address: 00:0C:29:99:D3:E6 (VMware)</span><br><span class="line">Device type: general purpose</span><br><span class="line">Running: Linux 3.X|4.X</span><br><span class="line">OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4</span><br><span class="line">OS details: Linux 3.2 - 4.9</span><br><span class="line">Network Distance: 1 hop</span><br><span class="line"></span><br><span class="line">OS detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="line">Nmap done: 1 IP address (1 host up) scanned in 3.49 seconds</span><br></pre></td></tr></table></figure>
+<p>​    3.禁用主机检测（-Pn），如果主机屏蔽了ping请求，Nmap可能会认为该主机没有开机。这将使得Nmap无法进行进一 步检测，比如端口扫描、服务版本识别和操作系统识别等探测工作。为了克服这一问题，就 需要禁用Nmap的主机检测功能。在指定这个选项之后，Nmap会认为目标主机已经开机并会 进行全套的检测工作</p>
+<p>​    4.强力检测选项（-A），启用-A选项之后，Nmap将检测目标主机的下述信息<br>    服务版本识别（-sV）；<br>    操作系统识别（-O）；<br>    脚本扫描（-sC）；<br>    Traceroute（–traceroute）。</p>
+<h3 id="TCP扫描选项"><a href="#TCP扫描选项" class="headerlink" title="TCP扫描选项"></a>TCP扫描选项</h3><p>​    1.TCP连接扫描（-sT）：指定这个选项后，程序将和目标主机的每个端口都进行完整的三次 握手。如果成功建立连接，则判定该端口是开放端口。由于在检测每个端口时都需要进行三 次握手，所以这种扫描方式比较慢，而且扫描行为很可能被目标主机记录下来。如果启动 Nmap的用户的权限不足，那么默认情况下Nmap程序将以这种模式进行扫描。</p>
+<p>​    2.SYN扫描（-sS）：该选项也称为半开连接或者SYN    stealth。采用该选项后，Nmap将使用 含有SYN标志位的数据包进行端口探测。如果目标主机回复了SYN/ACK包，则说明该端口处 于开放状态：如果回复的是RST/ACK包，则说明这个端口处于关闭状态；如果没有任何响应 或者发送了ICMP    unreachable信息，则可认为这个端口被屏蔽了。SYN模式的扫描速度非常 好。而且由于这种模式不会进行三次握手，所以是一种十分隐蔽的扫描方式。如果启动Nmap 的用户有高级别权限，那么在默认情况下Nmap程序将以这种模式进行扫描。</p>
+<p>​    3.TCP NULL（-sN）、FIN（-sF）及XMAS（-sX）扫描：NULL    扫描不设置任何控制位； FIN扫描仅设置FIN标志位：XMAS扫描设置FIN、PSH和URG的标识位。如果目标主机返回 了含有RST标识位的响应数据，则说明该端口处于关闭状态；如果目标主机没有任何回应， 则该端口处于打开｜过滤状态。</p>
+<p>​    4.TCP Maimon扫描（-sM）：Uriel    Maimon    首先发现了TCP  Maimom扫描方式。这种模式的 探测数据包含有FIN/ACK标识。对于BSD衍生出来的各种操作系统来说，如果被测端口处于 开放状态，主机将会丢弃这种探测数据包；如果被测端口处于关闭状态，那么主机将会回复 RST。 </p>
+<p>​    5.TCPACK扫描（-sA）：这种扫描模式可以检测目标系统是否采用了数据包状态监测技术 （stateful）防火墙，并能确定哪些端口被防火墙屏蔽。这种类型的数据包只有一个ACK标识 位。如果目标主机的回复中含有RST标识，则说明目标主机没有被过滤。</p>
+<p>​    6.TCP窗口扫描（-sW）：这种扫描方式检测目标返回的RST数据包的TCP窗口字段。如果目 标端口处于开放状态，这个字段的值将是正值；否则它的值应当是0。</p>
+<p>​    7.TCP Idle扫描（-sI）：采用这种技术后，您将通过指定的僵尸主机发送扫描数据包。本机 并不与目标主机直接通信。如果对方网络里有IDS，IDS将认为发起扫描的主机是僵尸主机。</p>
+<h3 id="UDP扫描选项"><a href="#UDP扫描选项" class="headerlink" title="UDP扫描选项"></a>UDP扫描选项</h3><p>Nmap有多种TCP扫描方式，而UDP扫描仅有一种扫描方式（-sU）。虽然UDP扫描结果没有 TCP扫描结果的可靠度高，但渗透测试人员不能因此而轻视UDP扫描，毕竟UDP端口代表着 可能会有价值的服务端程序。但是UDP扫描的最大问题是性能问题。由干Linux内核限制1秒内最多发送一次ICMP    Port Unreachable信息。按照这个速度，对一台主机的65536个UDP端口进行完整扫描，总耗时必 定会超过18个小时。</p>
+<p>优化方法主要是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.进行并发的UDP扫描；</span><br><span class="line">2.优先扫描常用端口；</span><br><span class="line">3.在防火墙后面扫描；</span><br><span class="line">4.启用--host-timeout选项以跳过响应过慢的主机。</span><br></pre></td></tr></table></figure>
+<p>假如我们需要找到目标主机开放了哪些    UDP端口。为提高扫描速度，我们仅扫描    53端口 （DNS）和161端口（SNMP）。</p>
+<p>可以使用命令<code>nmap -sU    192.168.56.103 -p 53,161</code> </p>
+<h3 id="目标端口选项"><a href="#目标端口选项" class="headerlink" title="目标端口选项"></a>目标端口选项</h3><p>默认情况下，Nmap将从每个协议的常用端口中随机选择1000个端口进行扫描。其nmapservices文件对端口的命中率进行了排名。</p>
+<p>可以自定义端口参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-p端口范围：只扫描指定的端口。扫描1〜1024号端口，可设定该选项为–p	1-1024。扫描1 〜65535端口时，可使用-p-选项。</span><br><span class="line"></span><br><span class="line">-F（快速扫描）：将仅扫描100	个常用端口。</span><br><span class="line"></span><br><span class="line">-r（顺序扫描）：指定这个选项后，程序将从按照从小到大的顺序扫描端口。 ●	-</span><br><span class="line"></span><br><span class="line">-top-ports &lt;1 or=&quot;&quot;	greater=&quot;&quot;&gt;：扫描nmap-services	里排名前N的端口。</span><br></pre></td></tr></table></figure>
+<h3 id="输出选项"><a href="#输出选项" class="headerlink" title="输出选项"></a>输出选项</h3><p>Nmap可以把扫描结果保存为外部文件。在需要使用其他工具处理Nmap的扫描结果时，这一 功能十分有用。即使您设定程序把扫描结果保存为文件，Nmap还是会在屏幕上显示扫描结果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Nmap支持以下几种输出形式。</span><br><span class="line">正常输出（-oN）：不显示runtime信息和警告信息。</span><br><span class="line"></span><br><span class="line">XML	文件（-oX）：生成的	XML	格式文件可以转换成	HTML	格式文件，还可被Nmap	的图 形用户界面解析，也便于导入数据库。本文建议您尽量将扫描结果输出为XML文件。</span><br><span class="line"></span><br><span class="line">生成便于Grep使用的文件（-oG）：虽然这种文件格式已经过时，但仍然很受欢迎。这种格 式的文件，其内容由注释（由#开始）和信息行组成。信息行包含6个字段，每个字段的字段 名称和字段值以冒号分割，字段之间使用制表符隔开。这些字段的名称分别为Host、Ports、Protocols、Ignored State、OS、Seq Index、IP ID	Seq	和Status。这种格式的文件便于 grep或awk之类的UNIX指令整理扫描结果。</span><br><span class="line"></span><br><span class="line">输出至所有格式(-oA)</span><br><span class="line">为使用方便，利用-oA选项 可将扫描结果以标准格式、XML格式和Grep格式一次性输出。分别存放在.nmap，.xml和.gnmap文件中。</span><br></pre></td></tr></table></figure>
+<h3 id="时间排程控制选项"><a href="#时间排程控制选项" class="headerlink" title="时间排程控制选项"></a>时间排程控制选项</h3><p>Nmap可通过-T选项指定时间排程控制的模式。它有6种扫描模式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">paranoid（0）：每5分钟发送一次数据包，且不会以并行方式同时发送多组数据。这种模式 的扫描不会被IDS检测到。</span><br><span class="line"></span><br><span class="line">sneaky（1）：每隔15秒发送一个数据包，且不会以并行方式同时发送多组数据。</span><br><span class="line"></span><br><span class="line">polite（2）：每0.4	秒发送一个数据包，且不会以并行方式同时发送多组数据。</span><br><span class="line"></span><br><span class="line">normal（3）：此模式同时向多个目标发送多个数据包，为	Nmap	默认的模式，该模式能自 动在扫描时间和网络负载之间进行平衡。</span><br><span class="line"></span><br><span class="line">aggressive（4）：在这种模式下，Nmap	对每个既定的主机只扫描5	分钟，然后扫描下一 台主机。它等待响应的时间不超过1.25秒。</span><br><span class="line"></span><br><span class="line">insane（5）：在这种模式下，Nmap	对每个既定的主机仅扫描75	秒，然后扫描下一台主 机。它等待响应的时间不超过0.3秒。</span><br></pre></td></tr></table></figure>
+<p>默认的扫描模式通常都没有问题。除非您想要进行更隐匿或更快速的扫 描，否则没有必要调整这一选项。</p>
+<h3 id="扫描IPv6主机"><a href="#扫描IPv6主机" class="headerlink" title="扫描IPv6主机"></a>扫描IPv6主机</h3><p>启用Nmap的-6选项即可扫描IPv6的目标主机。当前，只能逐个指定目标主机的IPv6地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap	-6	fe80::a00:27ff:fe43:1518</span><br></pre></td></tr></table></figure>
+<p>同一台主机在IPv6网络里开放的端口比它在IPv4网络里开放的端口数量要 少。这是因为部分服务程序尚未支持IPv6网络。</p>
+<h3 id="脚本引擎功能（Nmap-Scripting-Engine，NSE）"><a href="#脚本引擎功能（Nmap-Scripting-Engine，NSE）" class="headerlink" title="脚本引擎功能（Nmap Scripting Engine，NSE）"></a>脚本引擎功能（Nmap Scripting Engine，NSE）</h3><p>最后但是同样重要的，Nmap本身已经很强大了，但是加上它的脚本引擎更加开挂了，NSE    可使用户的各种网络检査工作更为自动化，有助于识别应 用程序中新发现的漏洞、检测程序版本等Nmap原本不具有的功能。虽然Nmap软件包具有各 种功能的脚本，但是为了满足用户的特定需求，它还支持用户撰写自定义脚本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">auth：此类脚本使用暴力破解等技术找出目标系统上的认证信息。</span><br><span class="line"></span><br><span class="line">default：启用--sC	或者-A	选项时运行此类脚本。这类脚本同时具有下述特点：执行速度快；输出的信息有指导下一步操作的价值；输出信息内容丰富、形式简洁；必须可靠；不会侵入目标系统；能泄露信息给第三方。</span><br><span class="line"></span><br><span class="line">discovery：该类脚本用于探索网络。</span><br><span class="line"></span><br><span class="line">dos：该类脚本可能使目标系统拒绝服务，请谨慎使用。</span><br><span class="line"></span><br><span class="line">exploit：该类脚本利用目标系统的安全漏洞。在运行这类脚本之前，渗透测试人员需要获取 被测单位的行动许可。</span><br><span class="line"></span><br><span class="line">external：该类脚本可能泄露信息给第三方。</span><br><span class="line"></span><br><span class="line">fuzzer：该类脚本用于对目标系统进行模糊测试。</span><br><span class="line"></span><br><span class="line">instrusive：该类脚本可能导致目标系统崩溃，或耗尽目标系统的所有资源。</span><br><span class="line"></span><br><span class="line">malware：该类脚本检査目标系统上是否存在恶意软件或后门。</span><br><span class="line"></span><br><span class="line">safe：该类脚本不会导致目标服务崩溃、拒绝服务且不利用漏洞。</span><br><span class="line"></span><br><span class="line">version：配合版本检测选项（-sV），这类脚本对目标系统的服务程序进行深入的版本检 测。</span><br><span class="line"></span><br><span class="line">vuln：该类脚本可检测检査目标系统上的安全漏洞。</span><br><span class="line">在Kali	Linux系统中，Nmap脚本位于目录/usr/share/nmap/scripts。</span><br><span class="line"></span><br><span class="line">-sC	或--script=default：启动默认类NSE	脚本。</span><br><span class="line"></span><br><span class="line">--script	&lt;filename&gt;|&lt;category&gt;|&lt;directories&gt;：根据指定的文件名、类别名、目录名，执行 相应的脚本。</span><br><span class="line"></span><br><span class="line">--script-args	&lt;args&gt;：这个选项用于给脚本指定参数。例如，在使用认证类脚本时，可通过 这个选项指定用户名和密码</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap --script http-enum,http-headers,http-methods,http-php-version	-p	80 192.168.56.103</span><br></pre></td></tr></table></figure>
+<h3 id="规避检测的选项"><a href="#规避检测的选项" class="headerlink" title="规避检测的选项"></a>规避检测的选项</h3><p>在渗透测试的工作中，目标主机通常处于防火墙或    IDS    系统的保护之中。在这种环境中使用 Nmap    的默认选项进行扫描，不仅会被发现，而且往往一无所获。此时，我们就要使用Nmap 规避检测的有关选项。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">-f（使用小数据包）：这个选项可避免对方识别出我们探测的数据包。指定这个选项之后， Nmap将使用8字节甚至更小数据体的数据包。</span><br><span class="line"></span><br><span class="line">--mtu：这个选项用来调整数据包的包大小。MTU（Maximum	Transmission	Unit，最大传输 单元）必须是8的整数倍，否则Nmap将报错。</span><br><span class="line"></span><br><span class="line">-D（诱饵）：这个选项应指定假	IP，即诱饵的	IP。启用这个选项之后，Nmap	在发送侦测 数据包的时候会掺杂一些源地址是假IP（诱饵）的数据包。这种功能意在以藏木于林的方法 掩盖本机的真实	IP。也就是说，对方的log还会记录下本机的真实IP。您可使用RND生成随机 的假IP地址，或者用RND：number的参数生成&lt;number&gt;个假IP地址。您所指定的诱饵主机 应当在线，否则很容易击溃目标主机。另外，使用了过多的诱饵可能造成网络拥堵。尤其是 在扫描客户的网络的时候，您应当极力避免上述情况。</span><br><span class="line">Kali	Linux	渗透测试的艺术（中文版）</span><br><span class="line">151第 6章	服务枚举</span><br><span class="line">--source-port	&lt;portnumber&gt;或-g（模拟源端口）：如果防火墙只允许某些源端口的入站流 量，这个选项就非常有用。</span><br><span class="line"></span><br><span class="line">--data-length：这个选项用于改变Nmap	发送数据包的默认数据长度，以避免被识别出来是 Nmap的扫描数据。</span><br><span class="line"></span><br><span class="line">--max-parallelism：这个选项可限制Nmap	并发扫描的最大连接数。</span><br><span class="line"></span><br><span class="line">--scan-delay	&lt;time&gt;：这个选项用于控制发送探测数据的时间间隔，以避免达到IDS/IPS端 口扫描规则的阈值。</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工具使用/" rel="tag"># 工具使用</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/02/iptables命令详解/" rel="next" title="iptables命令详解">
+                <i class="fa fa-chevron-left"></i> iptables命令详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      #
+	   	
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="Crayon-xin" />
+            
+              <p class="site-author-name" itemprop="name">Crayon-xin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#初识Nmap"><span class="nav-number">1.</span> <span class="nav-text">初识Nmap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Nmap"><span class="nav-number">2.</span> <span class="nav-text">安装Nmap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#入门Nmap"><span class="nav-number">3.</span> <span class="nav-text">入门Nmap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶Nmap"><span class="nav-number">4.</span> <span class="nav-text">进阶Nmap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用选项"><span class="nav-number">4.1.</span> <span class="nav-text">常用选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP扫描选项"><span class="nav-number">4.2.</span> <span class="nav-text">TCP扫描选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP扫描选项"><span class="nav-number">4.3.</span> <span class="nav-text">UDP扫描选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目标端口选项"><span class="nav-number">4.4.</span> <span class="nav-text">目标端口选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出选项"><span class="nav-number">4.5.</span> <span class="nav-text">输出选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间排程控制选项"><span class="nav-number">4.6.</span> <span class="nav-text">时间排程控制选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扫描IPv6主机"><span class="nav-number">4.7.</span> <span class="nav-text">扫描IPv6主机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脚本引擎功能（Nmap-Scripting-Engine，NSE）"><span class="nav-number">4.8.</span> <span class="nav-text">脚本引擎功能（Nmap Scripting Engine，NSE）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规避检测的选项"><span class="nav-number">4.9.</span> <span class="nav-text">规避检测的选项</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Crayon-xin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: decodeURI(window.location.pathname), 
+            owner: 'crayon-xin',
+            repo: 'BlogGitment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '97b6db1162e8c3028f0368dcf5652150df48edc9',
+            
+                client_id: '371248f9e8d7899c092c'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("8wOk9HbIqBDNUsLGdbL0MWAi-gzGzoHsz", "v5hhFJSgXiR9cMIticcsH1tt");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
